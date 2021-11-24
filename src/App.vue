@@ -1,12 +1,13 @@
 <template>
   
-  <!-- <navBar/> -->
+  <navBar/>
 
   <router-view/>
 </template>
 
 <script>
 import navBar from './components/navbar.vue'
+
 
 export default {
   components: { navBar }
@@ -17,13 +18,17 @@ export default {
 
 
 <style>
+@import url('http://fonts.cdnfonts.com/css/sofia-pro');
 
 * {
   padding: 0;
   margin: 0;
 }
-#app {
 
+
+
+#app {
+  font-family: 'Sofia Pro', sans-serif;
 }
 
 </style>
