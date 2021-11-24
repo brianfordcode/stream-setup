@@ -2,14 +2,18 @@
 
   <div id="nav">
 
-    <div class="logo"><router-link to="/">MyStreamSetup</router-link></div>
+    <div class="nav-wrapper">
+      <div class="logo"><router-link to="/">MyStreamSetup</router-link></div>
     
-    <div class="links-wrapper">
-      <!-- <router-link to="/about">About</router-link> -->
-      <router-link class="link" to="/edit">Edit Page</router-link>
-      <router-link class="link" to="/view">View Page</router-link>
-      <img class="gear-icon" src="https://img.icons8.com/material-outlined/24/000000/settings.png"/>
+      <div class="links-wrapper">
+        <!-- <router-link to="/about">About</router-link> -->
+        <p class="save-btn">Save</p>
+        <router-link class="link" to="/edit">Edit Page</router-link>
+        <router-link class="link" to="/view">View Page</router-link>
+        <img class="gear-icon" src="https://img.icons8.com/material-outlined/24/000000/settings.png"/>
+      </div>
     </div>
+    
     
   </div>
 
@@ -25,9 +29,16 @@ export default {
 #nav {
   padding: 20px;
   border-bottom: 1px solid black;
+  background-color: rgba(255,255,255,0.5);
+}
+
+.nav-wrapper {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  max-width: 1200px;
+  /* border: 1px solid blue; */
+  margin: 0 auto;
 }
 
 
@@ -40,6 +51,12 @@ export default {
 .links-wrapper {
     display: flex;
     align-items: center;
+}
+
+.save-btn {
+    border: 1px solid black;
+    padding: 5px;
+    cursor: pointer
 }
 
 .link a {

@@ -29,6 +29,8 @@ export default {
 
 #app {
   font-family: 'Sofia Pro', sans-serif;
+  /* background-color: blue; */
+  height: 100vh;
 }
 
 </style>
