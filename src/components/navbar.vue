@@ -28,8 +28,9 @@ export default {
 <style scoped>
 #nav {
   padding: 20px;
-  border-bottom: 1px solid black;
+  /* border-bottom: 1px solid black; */
   background-color: rgba(255,255,255,0.5);
+  box-shadow: 0px 0px 33px -20px #000000;
 }
 
 .nav-wrapper {

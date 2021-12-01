@@ -2,11 +2,14 @@
 
 <!-- MAIN IMAGE -->
   <div class="container">
-    <img class="main-img"
-         draggable="false"
-         @click="recordCoord"
-         src="https://www.minimaldesksetups.com/wp-content/uploads/2020/09/Featureimage.jpg"
-    />
+      <div class="images-container">
+          <img class="main-img"
+               draggable="false"
+               @click="recordCoord"
+               src="https://www.minimaldesksetups.com/wp-content/uploads/2020/09/Featureimage.jpg"
+          />
+      </div>
+    
 
 <!--  TARGET  -->
     <div v-for="(item, index) in equipment" :key="item">
@@ -55,7 +58,7 @@
             <button
               class="remove-btn btn"
               @click.stop = "equipment.splice(index, 1)"
-            >&#x2715
+            >REMOVE
             </button>
          </div>
        </div>
@@ -63,12 +66,17 @@
 
 <!-- ITEMS LIST -->
   <ul class="items-list-container">
+    <li class="placeholder"
+        v-if="equipment.length===0"
+    >Add your equipment info by clicking on your setup's image!
+    </li>
     <li 
       class="item"
       v-for="(item, index) in equipment" :key="item"
       @click.stop="equipment[index].display = !equipment[index].display"
     >
       <div class="item-details">
+          
           <img class="icon" 
                :src="getIconPic(index)"
                alt="item"
@@ -170,13 +178,21 @@ export default {
     width: 750px;
     height: auto;
     margin-bottom: 10px;
+    cursor: crosshair;
+    box-shadow: 0px 0px 33px -20px #000000;
   }
   
   .target {
     position: absolute;
-    opacity: .5;
+    opacity: .25;
     width: 50px;
     height: auto;
+    cursor: pointer;
+    transition: .1s ease-in-out;
+  }
+
+  .target:hover {
+      opacity: 0.5;
   }
   
   .details-box {
@@ -185,7 +201,8 @@ export default {
     flex-direction: column;
     justify-content: flex-start;
     padding: 25px 20px 25px 20px;
-    background-color: rgba(0,0,0,0.65)
+    background-color: rgba(0,0,0,0.65);
+    z-index: 1000;
   }
 
   .details-box > * {
@@ -232,7 +249,20 @@ export default {
   .items-list-container {
       display: flex;
       flex-wrap: wrap;
-      max-width: 1035px;
+      max-width: 966px;
+      /* border: 1px solid black; */
+  }
+
+  .placeholder {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      border: 2px dashed white;
+      height: 100px;
+      width: 300px;
+      text-align: center;
+      opacity: 0.5;
+      cursor: default;
   }
 
   li {
@@ -245,11 +275,18 @@ export default {
 
   .item-details {
       display: flex;
-      background-color: rgba(0,0,0,0.45);
-      width: 300px;
-      min-height: 150px;
+      /* background-color: rgba(0,0,0,0.45); */
+      border: 1px solid white;
+      border-radius: 7px;
+      width: 275px;
+      min-height: 100px;
       padding: 15px;
       position: relative;
+      transition: .1s ease-in-out;
+  }
+
+  .item-details:hover {
+      transform: scale(1.01);
   }
 
   .item-text {
@@ -265,12 +302,19 @@ export default {
 
   .item-text a {
       position: absolute;
+      opacity: 0.75;
       bottom: 0;
       right: 0;
       padding: 10px;
       text-decoration: none;
       color: white;
       background-color: green;
+      transition: .1s ease-in-out;
+      border-bottom-right-radius: 7px;
+  }
+
+  .item-text a:hover {
+      opacity: 1;
   }
 
   .icon {
