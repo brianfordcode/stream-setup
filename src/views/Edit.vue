@@ -27,7 +27,7 @@ export default {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
-  min-height: 1500px;
+  /* min-height: 1000px; */
 }
 
 </style>

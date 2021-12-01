@@ -8,7 +8,7 @@
     </div>
     
     <div class="details">
-      <h1>Name Name</h1>
+      <h1>{{ profName }}</h1>
       <button class="add-links-btn" @click="uploadSocial">Add Social Links</button>
     </div>
 
@@ -21,7 +21,8 @@
   export default {
     data() {
       return {
-        uploadedPic: ''
+        uploadedPic: '',
+        profName: 'M1Garand41',
       }
     },
     methods: {
@@ -39,7 +40,7 @@
 <style scoped>
 
   .wrapper {
-    height: 75px;
+    height: 90px;
     /* width: 1000px; */
     margin: 50px auto;
     background-color: rgba(255,255,255,.25);
@@ -56,7 +57,7 @@
     width: 120px;
     border-radius: 100px;
     background-color: grey;
-    transform: translate(10px, -30px);
+    transform: translate(10px, -15px);
     display: flex;
     justify-content: space-around;
     align-items: end;
@@ -77,14 +78,14 @@
   .details {
     display: flex;
     flex-direction: column;
-    transform: translate(150px, 10px);
+    transform: translate(150px, 15px);
   }
 
   .add-links-btn {
       background: green;
       border: none;
       color: white;
-      width: 60%;
+      width: 130px;
       margin: 0 auto;
       padding: 5px;
       cursor: pointer;

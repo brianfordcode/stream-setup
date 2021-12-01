@@ -38,6 +38,7 @@
                   <option value="mouse">Mouse</option>
                   <option value="computer">Computer</option>
                   <option value="accessory">Accessory</option>
+                  <option value="webcam">Webcam</option>
               </select>
           </div>
 
@@ -66,17 +67,20 @@
 
 <!-- ITEMS LIST -->
   <ul class="items-list-container">
+      <!-- PLACEHOLDER -->
     <li class="placeholder"
         v-if="equipment.length===0"
-    >Add your equipment info by clicking on your setup's image!
+    >
+    Add your equipment info by clicking on your setup's image!
     </li>
+    <!-- PLACEHOLDER -->
+
     <li 
       class="item"
       v-for="(item, index) in equipment" :key="item"
       @click.stop="equipment[index].display = !equipment[index].display"
     >
       <div class="item-details">
-          
           <img class="icon" 
                :src="getIconPic(index)"
                alt="item"
@@ -94,6 +98,7 @@
           
       </div>
     </li>
+
   </ul>
 </template>
 
@@ -258,8 +263,8 @@ export default {
       justify-content: space-around;
       align-items: center;
       border: 2px dashed white;
-      height: 100px;
-      width: 300px;
+      height: 200px;
+      width: 100%;
       text-align: center;
       opacity: 0.5;
       cursor: default;
