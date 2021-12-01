@@ -3,6 +3,14 @@
 <!-- MAIN IMAGE -->
   <div class="container">
       <div class="images-container">
+          <!-- IMAGE PLACEHOLDER -->
+          <div @click="addMainImg"
+               class="main-img-placeholder"
+               v-if="mainImg"
+           >
+            add a main image
+          </div>
+          <!-- IMAGE PLACEHOLDER -->
           <img class="main-img"
                draggable="false"
                @click="recordCoord"
@@ -27,7 +35,7 @@
               <select name="category"
                       id="category" 
                       v-model="equipment[index].category"
-                      style="width:200px; height: 30px; outline: none"
+                      style="width:200px; height: 30px;"
               >
                   <option value="none" selected disabled hidden>Category</option>
                   <option value="keyboard">Keyboard</option>
@@ -111,6 +119,7 @@ export default {
       x: 0,
       y: 0,
       done: false,
+      mainImg: false,
     }
   },
   components: { },
@@ -166,7 +175,9 @@ export default {
         if (this.equipment[index].category === 'webcam') {
             return require('/public/icons/webcam.png')
         }
-        
+    },
+    addMainImg() {
+        console.log('add main image')
     }
   }
 }
@@ -177,6 +188,23 @@ export default {
   
   .container {
     position: relative;
+  }
+
+  .main-img-placeholder {
+      border: 2px dashed white;
+      width: 750px;
+      height: 400px;
+      color: white;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      opacity: 0.5;
+      cursor: pointer;
+      margin-bottom: 20px;
+  }
+  
+  .main-img-placeholder:hover {
+      opacity: 1;
   }
   
   .main-img {
@@ -228,6 +256,12 @@ export default {
       width: 200px;
       padding: 5px;
       outline: none;
+      border: none;
+  }
+
+  #category {
+      outline: none;
+      border: none;
   }
 
   .btn {
