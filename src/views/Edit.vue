@@ -1,7 +1,7 @@
 <template>
 
 <div class="edit-container">
-  <profileHeader/>
+  <profileHeader style="z-index: 1000;"/>
   <mainImg/>
 </div>
   
