@@ -59,7 +59,6 @@ export default {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    /* align-items: flex-start; */
     justify-content: space-between;
     height: 120px;
 }

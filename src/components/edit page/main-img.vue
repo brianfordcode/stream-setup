@@ -6,15 +6,15 @@
           <!-- IMAGE PLACEHOLDER -->
           <div @click="addMainImg"
                class="main-img-placeholder"
-               v-if="mainImg"
+               v-if="!mainImg"
            >
-            add a main image
+            add image
           </div>
-          <!-- IMAGE PLACEHOLDER -->
+
           <img class="main-img"
                draggable="false"
                @click="recordCoord"
-               src="https://www.minimaldesksetups.com/wp-content/uploads/2020/09/Featureimage.jpg"
+               :src="mainImg"
           />
       </div>
     
@@ -74,7 +74,10 @@
     </div>
 
 <!-- ITEMS LIST -->
+
+
   <ul class="items-list-container">
+
       <!-- PLACEHOLDER -->
     <li class="placeholder"
         v-if="equipment.length===0"
@@ -83,7 +86,37 @@
     </li>
     <!-- PLACEHOLDER -->
 
-    <li 
+
+
+<draggable 
+  v-model="this.equipment" 
+  group="items" 
+  @start="drag=true" 
+  @end="drag=false" 
+  item-key="id"
+  class="items-list-container"
+  >
+  <template #item="{element}">
+      <div class="item-details"
+           @click.stop="element.display = !element.display"
+      >
+          {{element.category}}
+          {{element.name}}
+
+          <a :href="element.url"
+             class="store-link"
+             target="_blank"
+             v-if="element.url"
+              >Visit Store
+          </a>
+          
+      </div>
+  </template>
+</draggable>
+
+
+
+    <!-- <li
       class="item"
       v-for="(item, index) in equipment" :key="item"
       @click.stop="equipment[index].display = !equipment[index].display"
@@ -103,14 +136,18 @@
               >Visit Store
               </a>
           </div>
-          
       </div>
-    </li>
+    </li> -->
+
 
   </ul>
+<p style="font-size: 14px; color: white; opacity: 0.5">*drag to reorder</p>
+  <!-- <div>{{this.equipment}}</div> -->
+
 </template>
 
 <script>
+import draggable from 'vuedraggable'
   
 export default {
   data() {
@@ -119,10 +156,12 @@ export default {
       x: 0,
       y: 0,
       done: false,
-      mainImg: false,
+      draggable: false,
+      mainImg: 'https://www.minimaldesksetups.com/wp-content/uploads/2020/09/Featureimage.jpg',
+      
     }
   },
-  components: { },
+  components: { draggable },
 
   methods: {
     recordCoord(e) {
@@ -130,18 +169,18 @@ export default {
       this.x = e.clientX - rect.left
       this.y = e.clientY - rect.top
       const point = {
+        category: '',
+        name: '',
+        url: '',
         x: this.x,
         y: this.y,
-        name: '',
-        category: '',
         display: true,
-        url: '',
       }
       this.equipment.push(point)
       console.log(this.equipment)
     },
 
-    getIconPic(index) {
+    getIconPic() {
         if (this.equipment[index].category === 'accessory') {
             return require('/public/icons/accessory.png')
         }
@@ -176,8 +215,8 @@ export default {
             return require('/public/icons/webcam.png')
         }
     },
-    addMainImg() {
-        console.log('add main image')
+    getIcon() {
+        console.log(this.element.category)
     }
   }
 }
@@ -202,7 +241,6 @@ export default {
       cursor: pointer;
       margin-bottom: 20px;
   }
-  
   .main-img-placeholder:hover {
       opacity: 1;
   }
@@ -320,8 +358,11 @@ export default {
       width: 275px;
       min-height: 100px;
       padding: 15px;
+      margin-right: 15px;
+      margin-bottom: 15px;
       position: relative;
       transition: .1s ease-in-out;
+      cursor: grab;
   }
 
   .item-details:hover {
@@ -339,7 +380,7 @@ export default {
       overflow: hidden;
   }
 
-  .item-text a {
+  .store-link {
       position: absolute;
       opacity: 0.75;
       bottom: 0;
