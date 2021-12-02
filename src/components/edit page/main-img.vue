@@ -23,7 +23,7 @@
     <div v-for="(item, index) in equipment" :key="item">
     	<img class="target"
             @click.stop="equipment[index].display = true"
-         	src="/target-icon.png"
+         	src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRekJKtc0jNpQ6WSma5IVnDTF7B_AI5k4Yg_Q&usqp=CAU"
             alt="target"
     	    :style="{top: (item.y - 25) + 'px', left: (item.x - 25) + 'px'}"
          />
@@ -138,7 +138,7 @@ export default {
       y: 0,
       done: false,
       draggable: false,
-      mainImg: 'https://www.minimaldesksetups.com/wp-content/uploads/2020/09/Featureimage.jpg',
+      mainImg: 'https://www.minimaldesksetups.com/wp-content/uploads/2020/09/Featureimage.jpg ',
       
     }
   },
@@ -240,7 +240,7 @@ export default {
   }
 
   .target:hover {
-      opacity: 0.5;
+      opacity: 0.75;
   }
   
   .details-box {

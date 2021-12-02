@@ -8,8 +8,8 @@
       <div class="links-wrapper">
         <!-- <router-link to="/about">About</router-link> -->
         <p class="save-btn">Save</p>
-        <router-link class="link" to="/edit">Edit Page</router-link>
-        <router-link class="link" to="/view">View Page</router-link>
+        <router-link class="link" to="/edit">Edit</router-link>
+        <router-link class="link" to="/view">Preview</router-link>
         <img class="gear-icon" src="https://img.icons8.com/material-outlined/24/000000/settings.png"/>
       </div>
     </div>
