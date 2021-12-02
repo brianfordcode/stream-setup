@@ -17,15 +17,17 @@
                :src="mainImg"
           />
       </div>
-    
+    <!-- https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRekJKtc0jNpQ6WSma5IVnDTF7B_AI5k4Yg_Q&usqp=CAU -->
 
 <!--  TARGET  -->
     <div v-for="(item, index) in equipment" :key="item">
     	<img class="target"
             @click.stop="equipment[index].display = true"
-         	src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRekJKtc0jNpQ6WSma5IVnDTF7B_AI5k4Yg_Q&usqp=CAU"
+         	src="/target-icon.png"
+            alt="target"
     	    :style="{top: (item.y - 25) + 'px', left: (item.x - 25) + 'px'}"
          />
+<!-- DETAILS BOX -->
       <div class="details-box"
            v-if="equipment[index].display"
            :style="{top: (item.y + 30) + 'px', left: (item.x) + 'px'}"
@@ -37,7 +39,7 @@
                       v-model="equipment[index].category"
                       style="width:200px; height: 30px;"
               >
-                  <option value="none" selected disabled hidden>Category</option>
+                  <option value="none" disabled>Select Category</option>
                   <option value="keyboard">Keyboard</option>
                   <option value="monitor">Monitor</option>
                   <option value="speaker">Speaker</option>
@@ -73,75 +75,54 @@
        </div>
     </div>
 
-<!-- ITEMS LIST -->
-
-
-  <ul class="items-list-container">
+<!-- ITEMS SECTION-->
 
       <!-- PLACEHOLDER -->
-    <li class="placeholder"
+    <div class="placeholder"
         v-if="equipment.length===0"
     >
     Add your equipment info by clicking on your setup's image!
-    </li>
-    <!-- PLACEHOLDER -->
+    </div>
 
-
-
-<draggable 
-  v-model="this.equipment" 
-  group="items" 
-  @start="drag=true" 
-  @end="drag=false" 
-  item-key="id"
-  class="items-list-container"
-  >
-  <template #item="{element}">
-      <div class="item-details"
-           @click.stop="element.display = !element.display"
-      >
-          {{element.category}}
-          {{element.name}}
-
-          <a :href="element.url"
-             class="store-link"
-             target="_blank"
-             v-if="element.url"
-              >Visit Store
-          </a>
-          
-      </div>
-  </template>
-</draggable>
-
-
-
-    <!-- <li
-      class="item"
-      v-for="(item, index) in equipment" :key="item"
-      @click.stop="equipment[index].display = !equipment[index].display"
+    <!-- ITEMS LIST -->
+    <draggable 
+        v-model="this.equipment" 
+        group="items"
+        @start="drag=true" 
+        @end="drag=false" 
+        item-key="id"
+        class="items-list-container"
     >
-      <div class="item-details">
-          <img class="icon" 
-               :src="getIconPic(index)"
-               alt="item"
-               v-if="equipment[index].category"
-          >
-          <div class="item-text">
-              <p>{{ item.name }}</p>
-              <a :href="equipment[index].url"
-                 class="store-link"
-                 target="_blank"
-                 v-if="equipment[index].url"
-              >Visit Store
-              </a>
-          </div>
-      </div>
-    </li> -->
+        <template #item="{element}">
+            <div class="item-details"
+                @click.stop="element.display = !element.display"
+            >
+            <!-- ICON -->
+            <img class="icon" 
+                    :src="getIconPic(element)"
+                    alt="item"
+                    v-if="element.category"
+                    style="height: 50px;"
+                >
+                <!-- NAME -->
+                <p style="color: white; padding-left: 10px">{{element.name}}</p>
+                <!-- STORE LINK -->
+                <a :href="element.url"
+                    class="store-link"
+                    target="_blank"
+                    v-if="element.url"
+                    >Visit Store
+                </a>
+            </div>
+        </template>
+    </draggable>
 
+    <p style="font-size: 14px; color: white; opacity: 0.5"
+       v-if="equipment.length>1"
+    >
+    *drag to reorder
+    </p>
 
-  </ul>
-<p style="font-size: 14px; color: white; opacity: 0.5">*drag to reorder</p>
   <!-- <div>{{this.equipment}}</div> -->
 
 </template>
@@ -177,47 +158,43 @@ export default {
         display: true,
       }
       this.equipment.push(point)
-      console.log(this.equipment)
     },
 
-    getIconPic() {
-        if (this.equipment[index].category === 'accessory') {
+    getIconPic(e) {
+        if (e.category === 'accessory') {
             return require('/public/icons/accessory.png')
         }
-        if (this.equipment[index].category === 'chair') {
+        if (e.category === 'chair') {
             return require('/public/icons/chair.png')
         }
-        if (this.equipment[index].category === 'computer') {
+        if (e.category === 'computer') {
             return require('/public/icons/computer.png')
         }
-        if (this.equipment[index].category === 'desk') {
+        if (e.category === 'desk') {
             return require('/public/icons/desk.png')
         }
-        if (this.equipment[index].category === 'headset') {
+        if (e.category === 'headset') {
             return require('/public/icons/headset.png')
         }
-        if (this.equipment[index].category === 'keyboard') {
+        if (e.category === 'keyboard') {
             return require('/public/icons/keyboard.png')
         }
-        if (this.equipment[index].category === 'microphone') {
+        if (e.category === 'microphone') {
             return require('/public/icons/microphone.png')
         }
-        if (this.equipment[index].category === 'monitor') {
+        if (e.category === 'monitor') {
             return require('/public/icons/monitor.png')
         }
-        if (this.equipment[index].category === 'mouse') {
+        if (e.category === 'mouse') {
             return require('/public/icons/mouse.png')
         }
-        if (this.equipment[index].category === 'speaker') {
+        if (e.category === 'speaker') {
             return require('/public/icons/speaker.png')
         }
-        if (this.equipment[index].category === 'webcam') {
+        if (e.category === 'webcam') {
             return require('/public/icons/webcam.png')
         }
     },
-    getIcon() {
-        console.log(this.element.category)
-    }
   }
 }
   
@@ -336,27 +313,19 @@ export default {
       align-items: center;
       border: 2px dashed white;
       height: 200px;
-      width: 100%;
+      width: 966px;
       text-align: center;
       opacity: 0.5;
       cursor: default;
-  }
-
-  li {
       color: white;
-      margin-right: 15px;
-      margin-bottom: 15px;
-      list-style-type: none;
-      cursor: pointer;
   }
 
   .item-details {
       display: flex;
-      /* background-color: rgba(0,0,0,0.45); */
       border: 1px solid white;
       border-radius: 7px;
       width: 275px;
-      min-height: 100px;
+      min-height: 90px;
       padding: 15px;
       margin-right: 15px;
       margin-bottom: 15px;
@@ -369,15 +338,8 @@ export default {
       transform: scale(1.01);
   }
 
-  .item-text {
-      display: flex;
-      flex-direction: column;
-      
-  }
-
-  .item-text p {
-      padding-left: 10px;
-      overflow: hidden;
+  .item-details:active {
+      cursor: grabbing;
   }
 
   .store-link {
@@ -395,10 +357,6 @@ export default {
 
   .item-text a:hover {
       opacity: 1;
-  }
-
-  .icon {
-      height: 50px;
   }
   
 </style>
