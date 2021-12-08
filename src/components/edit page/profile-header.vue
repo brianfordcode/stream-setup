@@ -1,5 +1,4 @@
 <template>
-
   <div class="container">
     <!-- PROF PIC -->
     <div class="prof-pic">
@@ -30,6 +29,24 @@
         </button>
       </div>
     <!-- ADD SOCIAL LINKS -->
+        <div class="links-display">
+          <a v-if="socialLinks.twitch" :href="socialLinks.twitch" target="_blank">
+            <img class="sm-logo" :src="twitchLogo" alt="twitch"/>
+          </a>
+          <a v-if="socialLinks.twitter" :href="socialLinks.twitter" target="_blank">
+            <img class="sm-logo" :src="twitterLogo" alt="twitter"/>
+          </a>
+          <a v-if="socialLinks.youtube" :href="socialLinks.youtube" target="_blank">
+            <img class="sm-logo" :src="youtubeLogo" alt="youtube"/>
+          </a>
+          <a v-if="socialLinks.discord" :href="socialLinks.discord" target="_blank">
+            <img class="sm-logo" :src="discordLogo" alt="discord"/>
+          </a>
+          <a v-if="socialLinks.website" :href="socialLinks.website" target="_blank">
+            <img class="sm-logo" :src="websiteLogo" alt="website"/>
+          </a>
+        </div>
+
         <div class="sl-container">
           <button class="add-links-btn" 
                   @click="socialLinksOpen = true">
@@ -43,11 +60,19 @@
           >
           &#10005;
           </button>
+          <button class="enter-btn"
+                  @click="submitSocialLinks(), socialLinksOpen = false"
+          >
+            Enter
+          </button>
             <div class="sl-inputs-wrapper">
               <!-- TWITCH -->
               <div class="sl-wrapper twitch">
                 <p>twitch</p>
-                <input class="field" type="text">
+                <input v-model="socialLinks.twitch"
+                       class="field"
+                       type="text"
+                >
                 <div class="live-status">
                   <input class="live-check" type="checkbox">
                   <div style="display: flex; flex-direction: column" class="live-text">
@@ -59,12 +84,18 @@
               <!-- TWITTER -->
               <div class="sl-wrapper twitter">
                 <p>twitter</p>
-                <input class="field" type="text">
+                <input v-model="socialLinks.twitter"
+                       class="field"
+                       type="text"
+                >
               </div>
               <!-- YOUTUBE -->
               <div class="sl-wrapper youtube">
                 <p>youtube</p>
-                <input class="field" type="text">
+                <input v-model="socialLinks.youtube"
+                       class="field"
+                       type="text"
+                >
                 <div class="live-status">
                   <input class="live-check" type="checkbox">
                   <div style="display: flex; flex-direction: column" class="live-text">
@@ -76,12 +107,18 @@
               <!-- DISCORD -->
               <div class="sl-wrapper discord">
                 <p>discord</p>
-                <input class="field" type="text">
+                <input v-model="socialLinks.discord"
+                       class="field"
+                       type="text"
+                >
               </div>
               <!-- PERSONAL WEBSITE -->
               <div class="sl-wrapper personal-site">
                 <p>website</p>
-                <input class="field" type="text">
+                <input v-model="socialLinks.website"
+                       class="field"
+                       type="text"
+                >
               </div>
             </div>
           </div>
@@ -99,12 +136,29 @@
         profName: 'Name',
         nameEditOpen: true,
         socialLinksOpen: false,
+        socialLinks: {
+          twitch: '',
+          twitter: '',
+          youtube: '',
+          discord: '',
+          website: '',
+        },
+        twitchLogo: require('/public/social-links/twitch-logo.png'),
+        twitterLogo: require('/public/social-links/twitter-logo.png'),
+        youtubeLogo: require('/public/social-links/youtube-logo.png'),
+        discordLogo: require('/public/social-links/discord-logo.png'),
+        websiteLogo: require('/public/social-links/website-logo.png'),
+        
       }
     },
     methods: {
       uploadProfImg() { 
         console.log('profile picture upload')
       },
+      submitSocialLinks() {
+        
+        console.log(this.socialLinks)
+      }
     }
   }
 
@@ -149,7 +203,7 @@
   }
 
   .name-edit {
-    transform: translate(150px, 12px);
+    transform: translate(150px, 9px);
     display: flex;
     align-items: center;
     height: max-content;
@@ -160,7 +214,7 @@
     border: none;
     outline: none;
     height: 30px;
-    width: 150px;
+    width: 250px;
     background-color: black;
     color: white;
     padding-left: 5px;
@@ -168,7 +222,10 @@
   }
 
   .enter-btn {
-    padding: 5px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 60px;
     border: none;
     background-color: green;
     color: white;
@@ -261,6 +318,19 @@
      border: 0;
      box-shadow: none;
      margin: 0 5px;
+   }
+
+   .links-display {
+     position: absolute;
+     transform: translate(150px, 42px);
+   }
+
+   .links-display > * {
+     margin-right: 10px;
+   }
+
+   .sm-logo {
+     height: 15px;
    }
 
 </style>

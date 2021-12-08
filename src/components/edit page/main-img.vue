@@ -17,8 +17,6 @@
                :src="mainImg"
           />
       </div>
-    <!-- https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRekJKtc0jNpQ6WSma5IVnDTF7B_AI5k4Yg_Q&usqp=CAU -->
-
 <!--  TARGET  -->
     <div v-for="(item, index) in equipment" :key="item">
     	<img class="target"

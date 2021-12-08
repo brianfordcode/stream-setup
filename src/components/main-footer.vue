@@ -2,12 +2,13 @@
   <div class="container">
       <div class="links-wrapper">
           <div class="links">
-              <p>home</p>
-              <p>about</p>
-              <p>contact</p>
-              <p>blog</p>
-              <p>faq</p>
+            <p>home</p>
+            <p>about</p>
+            <p>contact</p>
+            <p>blog</p>
+            <p>faq</p>
           </div>
+
           <div class="sub-copy">
               <div class="sub-box">
                   <input class="sub-input" type="email" placeholder="Your Email">
@@ -57,10 +58,13 @@ export default {
 
 .links {
     display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
+    /* border: 1px solid black; */
+    width: 112px;
     justify-content: space-between;
-    height: 120px;
+    align-items: center;
+    height: 90px;
+    flex-wrap: wrap;
+    cursor: pointer;
 }
 
 .sub-copy {
