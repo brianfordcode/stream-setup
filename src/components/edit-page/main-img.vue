@@ -115,7 +115,7 @@
         </template>
     </draggable>
 
-    <p style="font-size: 14px; color: white; opacity: 0.5"
+    <p style="font-size: 14px; color: white; opacity: 0.5; margin-top: 10px"
        v-if="equipment.length>1"
     >
     *drag to reorder
@@ -206,7 +206,7 @@ export default {
 
   .main-img-placeholder {
       border: 2px dashed white;
-      width: 750px;
+      width: 800px;
       height: 400px;
       color: white;
       display: flex;
@@ -221,9 +221,9 @@ export default {
   }
   
   .main-img {
-    width: 750px;
+    width: 800px;
     height: auto;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     cursor: crosshair;
     box-shadow: 0px 0px 33px -20px #000000;
   }
@@ -299,9 +299,10 @@ export default {
   }
 
   .items-list-container {
-      display: flex;
-      flex-wrap: wrap;
-      max-width: 966px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-gap: 10px;
+      width: min-content;
       /* border: 1px solid black; */
   }
 
@@ -311,7 +312,7 @@ export default {
       align-items: center;
       border: 2px dashed white;
       height: 200px;
-      width: 966px;
+      width: 795px;
       text-align: center;
       opacity: 0.5;
       cursor: default;
@@ -322,11 +323,9 @@ export default {
       display: flex;
       border: 1px solid white;
       border-radius: 7px;
-      width: 275px;
+      width: 227px;
       min-height: 90px;
       padding: 15px;
-      margin-right: 15px;
-      margin-bottom: 15px;
       position: relative;
       transition: .1s ease-in-out;
       cursor: grab;

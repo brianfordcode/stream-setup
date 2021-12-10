@@ -55,11 +55,6 @@
           <div class="sl-box"
                v-if="socialLinksOpen"
           >
-          <button class="close-btn"
-                  @click="socialLinksOpen = false"
-          >
-          &#10005;
-          </button>
           <button class="enter-btn"
                   @click="submitSocialLinks(), socialLinksOpen = false"
           >
@@ -97,7 +92,7 @@
                        type="text"
                 >
                 <div class="live-status">
-                  <input class="live-check" type="checkbox">
+                  <input class="live-check" type="checkbox" >
                   <div style="display: flex; flex-direction: column" class="live-text">
                     <p style="font-size: 15px">Live Status</p>
                     <p style="font-size:10px;">(Let people know you’re live!)</p>
@@ -168,8 +163,8 @@
 
   .container {
     height: 90px;
-    /* width: 1000px; */
-    margin: 50px auto;
+    /* width: 500px; */
+    margin: 20px auto;
     background-color: rgba(255,255,255,.25);
     position: relative;
     display: flex;
@@ -256,17 +251,6 @@
     margin-top: 2px;
     background-color: rgba(0,0,0,0.65);
     z-index: 1000;
-  }
-
-  .close-btn {
-    outline: none;
-    border: none;
-    padding: 5px;
-    background-color: red;
-    color: white;
-    position: absolute;
-    right: 0;
-    cursor: pointer;
   }
 
   .add-links-btn {

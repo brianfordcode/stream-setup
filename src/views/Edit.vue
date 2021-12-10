@@ -1,21 +1,30 @@
 <template>
 
-<div class="edit-container">
-  <profileHeader style="z-index: 1000;"/>
-  <mainImg/>
-</div>
-  
 
+<div class="main-container">
+
+  <div class="edit-container">
+    <profileHeader/>
+    <mainImg/>
+  </div>
+  
+  <sideBar/>
+
+</div>
 
 </template>
 
 <script>
-import mainImg from '../components/edit page/main-img.vue'
-import profileHeader from '../components/edit page/profile-header.vue'
+import mainImg from '../components/edit-page/main-img.vue'
+import profileHeader from '../components/edit-page/profile-header.vue'
+
+
+// placeholder sidebar
+import sideBar from '../components/side-bar.vue'
 
 export default {
   components: {
-    mainImg, profileHeader
+    mainImg, profileHeader, sideBar
   }
 
 }
@@ -23,10 +32,18 @@ export default {
 
 <style scoped>
 
+.main-container {
+  display: flex;
+  justify-content: space-around;
+  /* border: 1px solid black; */
+  width: 1200px;
+  margin: 20px auto;
+}
+
 .edit-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
+  width: 800px;
+  /* margin: 0 auto; */
+  /* padding: 0 20px; */
   /* min-height: 1000px; */
 }
 
