@@ -4,9 +4,10 @@
   <div class="container">
       <div class="images-container">
           <!-- IMAGE PLACEHOLDER -->
-          <div @click="addMainImg"
-               class="main-img-placeholder"
-               v-if="!mainImg"
+          <div
+            @click="addMainImg"
+            class="main-img-placeholder"
+            v-if="!mainImg"
            >
             add image
           </div>
@@ -21,6 +22,8 @@
     <div v-for="(item, index) in equipment" :key="item">
     	<img class="target"
             @click.stop="equipment[index].display = true"
+            @drag="handleTargetDrag"
+            @drop="handleTargetDrop"
          	src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRekJKtc0jNpQ6WSma5IVnDTF7B_AI5k4Yg_Q&usqp=CAU"
             alt="target"
     	    :style="{top: (item.y - 25) + 'px', left: (item.x - 25) + 'px'}"
@@ -32,10 +35,11 @@
       >
           <div class="details-text-wrapper">
               <p style="color:white">Category:</p>
-              <select name="category"
-                      id="category" 
-                      v-model="equipment[index].category"
-                      style="width:200px; height: 30px;"
+              <select
+                  name="category"
+                  id="category" 
+                  v-model="equipment[index].category"
+                  style="width:200px; height: 30px;"
               >
                   <option value="none" disabled>Select Category</option>
                   <option value="keyboard">Keyboard</option>
@@ -121,7 +125,7 @@
     *drag to reorder
     </p>
 
-  <!-- <div>{{this.equipment}}</div> -->
+  <div>{{this.equipment}}</div>
 
 </template>
 
@@ -157,7 +161,6 @@ export default {
       }
       this.equipment.push(point)
     },
-
     getIconPic(e) {
         if (e.category === 'accessory') {
             return require('/public/icons/accessory.png')
@@ -193,6 +196,10 @@ export default {
             return require('/public/icons/webcam.png')
         }
     },
+    handleTargetDrag(event) {
+        console.log(event)
+    }
+
   }
 }
   
@@ -350,7 +357,7 @@ export default {
       border-bottom-right-radius: 7px;
   }
 
-  .item-text a:hover {
+  .store-link:hover {
       opacity: 1;
   }
   

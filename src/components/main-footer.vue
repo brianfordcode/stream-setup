@@ -16,10 +16,18 @@
               </div>
               <div class="copy-sm">
                   <div class="sm-links">
-                      <p>a</p>
-                      <p>a</p>
-                      <p>a</p>
-                      <p>a</p>
+                      <a href="https://twitter.com" target="_blank">
+                        <img :src="twitterLogo" alt="twitter"/>
+                      </a>
+                      <a href="https://discord.com" target="_blank">
+                        <img :src="discordLogo" alt="discord"/>
+                      </a>  
+                      <a href="https://youtube.com" target="_blank">
+                        <img :src="youtubeLogo" alt="youtube"/>
+                      </a>
+                      <a href="https://facebook.com" target="_blank">
+                        <img :src="facebookLogo" alt="facebook"/>
+                      </a>
                   </div>
                   <p>2021 MyStreamSetup</p>
               </div>
@@ -32,6 +40,16 @@
 
 <script>
 export default {
+    data() {
+        return {
+          twitchLogo: require('/public/social-links/twitch-logo.png'),
+          twitterLogo: require('/public/social-links/twitter-logo.png'),
+          youtubeLogo: require('/public/social-links/youtube-logo.png'),
+          discordLogo: require('/public/social-links/discord-logo.png'),
+          facebookLogo: require('/public/social-links/facebook-logo.png'),
+          websiteLogo: require('/public/social-links/website-logo.png'),
+        }
+    }
 
 }
 </script>
@@ -113,8 +131,10 @@ export default {
     display: flex;
 }
 
-.sm-links > * {
-    margin: 5px;
+.sm-links a > * {
+    margin-right: 3px;
+    margin-top: 3px;
+    height: 20px;
 }
 
 </style>

@@ -1,5 +1,7 @@
 <template>
-  <div></div>
+  <div>
+    <p>SIDEBAR</p>
+  </div>
 </template>
 
 <script>
@@ -14,8 +16,10 @@ div {
     color: white;
     height: 900px;
     background-color: rgba(255,255,255,0.2);
-    width: 250px;
-    /* margin: auto 0; */
+    width: 300px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
 </style>
