@@ -4,11 +4,11 @@
 <div class="main-container">
 
   <div class="edit-container">
-    <profileHeader/>
+    <profileHeader style="z-index: 10000"/>
     <mainImg/>
   </div>
   
-  <sideBar/>
+  <!-- <sideBar/> -->
 
 </div>
 
@@ -37,7 +37,7 @@ export default {
   justify-content: space-around;
   /* border: 1px solid black; */
   width: 1200px;
-  margin: 20px auto;
+  margin: 30px auto 100px auto;
 }
 
 .edit-container {

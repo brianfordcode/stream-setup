@@ -43,7 +43,7 @@ export default {
     color: white;
     background-color: rgba(255,255,255,0.15);
     box-shadow: 0px 0px 33px -20px #000000;
-    margin-top: 100px;
+    /* margin-top: 100px; */
     padding: 0 100px 0 100px;
 }
 

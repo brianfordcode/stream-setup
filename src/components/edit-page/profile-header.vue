@@ -1,124 +1,123 @@
 <template>
   <div class="container">
+    
     <!-- PROF PIC -->
-    <div class="prof-pic">
-      <button class="upload-btn" @click="uploadProfImg">upload pic</button>
-      <!-- <img style="width: 120px; height: auto;" :src="'/' + uploadedPic" /> -->
-    </div>
-    <!-- NAME EDIT -->
-      <div class="name-edit">
-        <h1 v-if="nameEditOpen"
-           @click="nameEditOpen = !nameEditOpen">
-           {{ profName }}
-        </h1>
-        <input class="name-field"
-               type="text"
-               v-model="this.profName"
-               v-if="!nameEditOpen"
-               v-on:keyup.enter="nameEditOpen = !nameEditOpen"
-        >
-        <img class="edit-btn"
-             src="https://img.icons8.com/material-outlined/24/000000/edit--v1.png"
-             @click="nameEditOpen = false"
-             v-if="nameEditOpen"
-        />
-        <button class="enter-btn"
-                v-if="!nameEditOpen"
-                @click="nameEditOpen = true">
-                Enter
-        </button>
+      <div class="prof-pic">
+        <img style="width: 120px; opacity: 0.2; height: auto;" src="https://img.icons8.com/ios-glyphs/50/000000/user--v1.png"/>
       </div>
-    <!-- ADD SOCIAL LINKS -->
-        <div class="links-display">
-          <a v-if="socialLinks.twitch" :href="socialLinks.twitch" target="_blank">
+
+      <div class="details">
+
+        <!-- PROFILE NAME -->
+        <h1 class="prof-name">{{ profDetails.profName }}</h1>
+
+        <!-- LINKS -->
+        <div class="links-wrapper">
+          <a v-if="profDetails.twitch" :href="profDetails.twitch" target="_blank">
             <img class="sm-logo" :src="twitchLogo" alt="twitch"/>
           </a>
-          <a v-if="socialLinks.twitter" :href="socialLinks.twitter" target="_blank">
+          <a v-if="profDetails.twitter" :href="profDetails.twitter" target="_blank">
             <img class="sm-logo" :src="twitterLogo" alt="twitter"/>
           </a>
-          <a v-if="socialLinks.youtube" :href="socialLinks.youtube" target="_blank">
+          <a v-if="profDetails.youtube" :href="profDetails.youtube" target="_blank">
             <img class="sm-logo" :src="youtubeLogo" alt="youtube"/>
           </a>
-          <a v-if="socialLinks.discord" :href="socialLinks.discord" target="_blank">
+          <a v-if="profDetails.discord" :href="profDetails.discord" target="_blank">
             <img class="sm-logo" :src="discordLogo" alt="discord"/>
           </a>
-          <a v-if="socialLinks.website" :href="socialLinks.website" target="_blank">
+          <a v-if="profDetails.website" :href="profDetails.website" target="_blank">
             <img class="sm-logo" :src="websiteLogo" alt="website"/>
           </a>
         </div>
 
-        <div class="sl-container">
-          <button class="add-links-btn" 
-                  @click="socialLinksOpen = true">
-                  Edit Social Links
-          </button>
-          <div class="sl-box"
-               v-if="socialLinksOpen"
-          >
-          <button class="enter-btn"
-                  @click="submitSocialLinks(), socialLinksOpen = false"
-          >
-            Enter
-          </button>
-            <div class="sl-inputs-wrapper">
-              <!-- TWITCH -->
-              <div class="sl-wrapper twitch">
-                <p>twitch</p>
-                <input v-model="socialLinks.twitch"
-                       class="field"
-                       type="text"
-                >
-                <div class="live-status">
-                  <input class="live-check" type="checkbox">
-                  <div style="display: flex; flex-direction: column" class="live-text">
-                    <p style="font-size: 15px">Live Status</p>
-                    <p style="font-size:10px;">(Let people know you’re live!)</p>
-                  </div>
-                </div>
-              </div>
-              <!-- TWITTER -->
-              <div class="sl-wrapper twitter">
-                <p>twitter</p>
-                <input v-model="socialLinks.twitter"
-                       class="field"
-                       type="text"
-                >
-              </div>
-              <!-- YOUTUBE -->
-              <div class="sl-wrapper youtube">
-                <p>youtube</p>
-                <input v-model="socialLinks.youtube"
-                       class="field"
-                       type="text"
-                >
-                <div class="live-status">
-                  <input class="live-check" type="checkbox" >
-                  <div style="display: flex; flex-direction: column" class="live-text">
-                    <p style="font-size: 15px">Live Status</p>
-                    <p style="font-size:10px;">(Let people know you’re live!)</p>
-                  </div>
-                </div>
-              </div>
-              <!-- DISCORD -->
-              <div class="sl-wrapper discord">
-                <p>discord</p>
-                <input v-model="socialLinks.discord"
-                       class="field"
-                       type="text"
-                >
-              </div>
-              <!-- PERSONAL WEBSITE -->
-              <div class="sl-wrapper personal-site">
-                <p>website</p>
-                <input v-model="socialLinks.website"
-                       class="field"
-                       type="text"
-                >
-              </div>
-            </div>
-          </div>
       </div>
-  </div>
+    
+    <button class="edit-btn btn" @click="editOpen = !editOpen">Edit Details</button>
+
+
+    <!-- details box -->
+    <div class="details-box"
+         v-if="editOpen"
+    >
+      <div class="details-text">
+
+        <!-- PROFILE NAME -->
+        <div class="name-input input">
+          <p style="padding-right: 5px">Name</p>
+          <input type="text" v-model="profDetails.profName"/>
+        </div>
+
+        <!-- UPLOAD PICTURE -->
+        <button class="upload-btn btn" @click="uploadProfImg">Upload Profile Pic</button>
+
+        <!-- TWITCH -->
+        <div class="twitch input">
+          <img :src="twitchLogo" alt="twitch"/>
+          <input v-model="profDetails.twitch"
+                  class="field"
+                  type="text"
+          >
+        </div>
+        <!-- TWITTER -->
+        <div class="twitter input">
+          <img :src="twitterLogo" alt="twitter"/>
+          <input v-model="profDetails.twitter"
+                  class="field"
+                  type="text"
+          >
+        </div>
+        <!-- YOUTUBE -->
+        <div class="youtube input">
+          <img :src="youtubeLogo" alt="youtube"/>
+          <input v-model="profDetails.youtube"
+                  class="field"
+                  type="text"
+          >
+        </div>
+        <!-- DISCORD -->
+        <div class="discord input">
+          <img :src="discordLogo" alt="discord"/>
+          <input v-model="profDetails.discord"
+                  class="field"
+                  type="text"
+          >
+        </div>
+        <!-- WEBSITE -->
+        <div class="website input">
+          <img :src="websiteLogo" alt="website"/>
+          <input v-model="profDetails.website"
+                  class="field"
+                  type="text"
+          >
+        </div>
+        
+        <!-- ALLOW LIVE STATUS -->
+        <div class="allow-comments">
+          <input type="checkbox">
+          <div style="display: flex; flex-direction: column; padding-left: 5px">
+            <p>Live Status</p>
+            <p style="font-size:10px;">(Let people know you’re live!)</p>
+          </div>
+        </div>
+
+        <!-- ALLOW COMMENTS -->
+        <div class="allow-comments">
+          <input type="checkbox">
+          <p>Allow Comments</p>
+        </div>
+
+      </div>
+    
+    
+      <button class="close-btn btn"
+              @click="editOpen = false"
+      >
+      Enter
+      </button>
+    </div>
+
+
+</div>
 
 </template>
 
@@ -127,16 +126,15 @@
   export default {
     data() {
       return {
-        uploadedPic: '',
-        profName: 'Name',
-        nameEditOpen: true,
-        socialLinksOpen: false,
-        socialLinks: {
-          twitch: '',
-          twitter: '',
-          youtube: '',
-          discord: '',
-          website: '',
+        editOpen: false,
+        profDetails: {
+          profName: 'NAME',
+          profPic: '',
+          twitchLink: '',
+          twitterLink: '',
+          youtubeLink: '',
+          discordLink: '',
+          websiteLink: '',
         },
         twitchLogo: require('/public/social-links/twitch-logo.png'),
         twitterLogo: require('/public/social-links/twitter-logo.png'),
@@ -162,12 +160,12 @@
 <style scoped>
 
   .container {
-    height: 90px;
-    /* width: 500px; */
-    margin: 20px auto;
+    height: 80px;
+    margin: 0 auto;
     background-color: rgba(255,255,255,.25);
     position: relative;
     display: flex;
+    align-items: center;
     border-radius: 7px;
     color: white;
     box-shadow: 0px 0px 33px -20px #000000;
@@ -177,145 +175,102 @@
     position: absolute;
     height: 120px;
     width: 120px;
+    overflow: hidden;
     border-radius: 100px;
     background-color: grey;
-    transform: translate(10px, -15px);
-    display: flex;
-    justify-content: space-around;
-    align-items: end;
-    overflow: hidden;
+    transform: translate(10px);
     box-shadow: 0px 0px 33px -20px #000000;
   }
-  
-  .upload-btn {
-    position: absolute;
-    transform: translateY(-20px);
-    background: green;
-    color: white;
-    border: none;
-    padding: 5px;
-    cursor: pointer;
+
+  .prof-name {
+    height: min-content;
+    /* border: 1px solid blue; */
   }
 
-  .name-edit {
-    transform: translate(150px, 9px);
+  .details {
+    transform: translateX(145px);
+    /* border: 1px solid black; */
+    height: 70%;
     display: flex;
-    align-items: center;
-    height: max-content;
-  }  
-  
-  .name-field {
-    position: relative;
-    border: none;
-    outline: none;
-    height: 30px;
-    width: 250px;
-    background-color: black;
-    color: white;
-    padding-left: 5px;
-    font-size: 20px;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
-  .enter-btn {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 60px;
-    border: none;
-    background-color: green;
-    color: white;
-    height: 30px;
-    cursor: pointer;
+  .links-wrapper {
+    display: flex;
+    width: min-content;
+    height: 20px;
+    /* margin-left: 20px */
+    /* border: 1px solid blue; */
   }
 
   .edit-btn {
-    height: 24px;
-    transition: .2s ease-in-out;
-    cursor: pointer;
-  }
-
-  .edit-btn:hover {
-    transform: scale(1.1);
-  }
-
-  .sl-container {
     position: absolute;
-    transform: translate(150px, 60px);
+    bottom: 0;
+    right: 0;
+    border-bottom-right-radius: 7px;
   }
 
-  .sl-box {
-    background: black;
-    height: min-content;
-    width: min-content;
-    position: absolute;
-    margin-top: 2px;
-    background-color: rgba(0,0,0,0.65);
-    z-index: 1000;
-  }
-
-  .add-links-btn {
+  .btn {
     background: green;
-    border: none;
     color: white;
-    width: 130px;
-    margin: 0 auto;
     padding: 5px;
     cursor: pointer;
-  }
-
-  .sl-wrapper {
-    display: flex;
-    align-items: center;
-  }
-
-  .field {
-    width: 150px;
-    padding: 5px;
-    outline: none;
     border: none;
+    
   }
 
-  .sl-wrapper p { 
-    padding-right: 5px;
-
+  .details-box {
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: translateY(80px);
+    background-color: rgba(0,0,0,0.75);
   }
 
-  .sl-inputs-wrapper {
+  .close-btn {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+
+  .details-text {
+    padding: 30px;
     display: flex;
-    /* border: 1px solid white; */
-    margin: 25px;
-    height: 175px;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: space-around;
+
   }
 
-  .live-status {
-    width: max-content;
+  .details-text > * {
     display: flex;
     align-items: center;
-    height: 15px;
+    margin-bottom: 12px;
   }
 
-   .live-check {
-     outline: 0;
-     border: 0;
-     box-shadow: none;
-     margin: 0 5px;
-   }
+  .input img {
+    height: 25px;
+    padding-right: 5px
+  }
 
-   .links-display {
-     position: absolute;
-     transform: translate(150px, 42px);
-   }
+  .sm-logo {
+    height: 20px;
+  }
 
-   .links-display > * {
-     margin-right: 10px;
-   }
+  .links-wrapper a {
+    margin-right: 10px;
+  }
 
-   .sm-logo {
-     height: 15px;
-   }
+  .allow-comments > p {
+    padding-left: 5px;
+  }
+
+  input {
+    outline: none;
+    border: none;
+    padding: 5px;
+  }
 
 </style>
   

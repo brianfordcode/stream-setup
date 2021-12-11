@@ -12,10 +12,10 @@ export default {
 
 div {
     color: white;
-    height: 1000px;
-    margin-top: 20px;
+    height: 900px;
     background-color: rgba(255,255,255,0.2);
     width: 250px;
+    /* margin: auto 0; */
 }
 
 </style>

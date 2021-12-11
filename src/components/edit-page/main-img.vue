@@ -206,7 +206,6 @@ export default {
 
   .main-img-placeholder {
       border: 2px dashed white;
-      width: 800px;
       height: 400px;
       color: white;
       display: flex;
@@ -221,9 +220,9 @@ export default {
   }
   
   .main-img {
-    width: 800px;
+    width: 100%;
     height: auto;
-    margin-bottom: 20px;
+    margin: 10px 0;
     cursor: crosshair;
     box-shadow: 0px 0px 33px -20px #000000;
   }
@@ -312,7 +311,6 @@ export default {
       align-items: center;
       border: 2px dashed white;
       height: 200px;
-      width: 795px;
       text-align: center;
       opacity: 0.5;
       cursor: default;
