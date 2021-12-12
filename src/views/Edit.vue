@@ -8,7 +8,7 @@
     <mainImg/>
   </div>
   
-  <!-- <sideBar/> -->
+  <sideBar/>
 
 </div>
 
@@ -37,6 +37,8 @@ export default {
   justify-content: space-around;
   /* border: 1px solid black; */
   width: 1200px;
+  flex-grow: 0;
+  flex-shrink: 0;
   margin: 30px auto 100px auto;
 }
 

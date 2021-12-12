@@ -47,7 +47,14 @@
 
       </div>
     
-    <button class="edit-btn btn" @click="editOpen = !editOpen, enterBtn()">Edit Details</button>
+    <!-- EDIT DETAILS BUTTON -->
+    <button
+        class="edit-btn btn"
+        @click="editOpen = !editOpen, enterBtn()"
+        ref="textToggle"
+    >
+    Edit Details
+    </button>
 
 
     <!-- details box -->
@@ -168,6 +175,9 @@
       },
       enterBtn() {
         console.log(this.profDetails)
+
+        this.$refs.textToggle.innerHTML =  !this.editOpen ? "Enter Details" : '&#8679;'
+
       }
     }
   }
@@ -224,6 +234,8 @@
     position: absolute;
     bottom: 0;
     right: 0;
+    width: 90px;
+    height: 25px;
     border-bottom-right-radius: 7px;
   }
 

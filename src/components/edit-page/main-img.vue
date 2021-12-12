@@ -1,8 +1,16 @@
 <template>
 
 <!-- MAIN IMAGE -->
-  <div class="container">
-      <div class="images-container">
+<!-- https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRekJKtc0jNpQ6WSma5IVnDTF7B_AI5k4Yg_Q&usqp=CAU -->
+  <div
+    class="container"
+    @mousemove = "onMouseMove"
+    @mouseup = "dragging = null"
+  >
+      <div
+        class="images-container"
+        ref = "imagesContainer"
+      >
           <!-- IMAGE PLACEHOLDER -->
           <div
             @click="addMainImg"
@@ -19,13 +27,13 @@
           />
       </div>
 <!--  TARGET  -->
-    <div v-for="(item, index) in equipment" :key="item">
+    <div v-for="(item, index) in equipment" :key="index">
     	<img class="target"
             @click.stop="equipment[index].display = true"
-            @drag="handleTargetDrag"
-            @drop="handleTargetDrop"
-         	src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRekJKtc0jNpQ6WSma5IVnDTF7B_AI5k4Yg_Q&usqp=CAU"
+            @mousedown="dragging = index"
+         	src="@/assets/target-icon.png"
             alt="target"
+            draggable="false"
     	    :style="{top: (item.y - 25) + 'px', left: (item.x - 25) + 'px'}"
          />
 <!-- DETAILS BOX -->
@@ -74,8 +82,8 @@
             >REMOVE
             </button>
          </div>
-       </div>
     </div>
+  </div>
 
 <!-- ITEMS SECTION-->
 
@@ -140,6 +148,7 @@ export default {
       y: 0,
       done: false,
       draggable: false,
+      dragging: null,
       mainImg: 'https://www.minimaldesksetups.com/wp-content/uploads/2020/09/Featureimage.jpg ',
       
     }
@@ -196,8 +205,16 @@ export default {
             return require('/public/icons/webcam.png')
         }
     },
-    handleTargetDrag(event) {
-        console.log(event)
+    onMouseMove(event) {
+        event.preventDefault()
+        if (this.dragging === null) { return }
+
+        const {x, y} = this.$refs.imagesContainer.getBoundingClientRect()
+
+        this.equipment[this.dragging].x = event.clientX - x
+        this.equipment[this.dragging].y = event.clientY - y
+
+
     }
 
   }
@@ -227,7 +244,7 @@ export default {
   }
   
   .main-img {
-    width: 100%;
+    width: 800px;
     height: auto;
     margin: 10px 0;
     cursor: crosshair;
@@ -236,11 +253,11 @@ export default {
   
   .target {
     position: absolute;
-    opacity: .25;
+    opacity: .75;
     width: 50px;
     height: auto;
     cursor: pointer;
-    transition: .1s ease-in-out;
+    transition: opacity .1s ease-in-out;
   }
 
   .target:hover {

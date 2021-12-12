@@ -1,10 +1,13 @@
 <template>
+  <div class="container">
+    <navBar/>
+
+    <router-view/>
+
+    <mainFooter/> 
+
+  </div>
   
-  <navBar/>
-
-  <router-view/>
-
-  <mainFooter/>
 
 </template>
 
@@ -31,8 +34,7 @@ export default {
 
 #app {
   font-family: 'Sofia Pro', sans-serif;
-  /* height: 100%; */
-background: linear-gradient(45deg, rgba(36,55,81,1) 0%, rgba(56,90,139,1) 50%, rgba(7,11,16,1) 100%);
+  background: linear-gradient(45deg, rgba(36,55,81,1) 0%, rgba(56,90,139,1) 50%, rgba(7,11,16,1) 100%);
 }
 
 </style>

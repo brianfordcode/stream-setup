@@ -15,8 +15,11 @@ export default {
 div {
     color: white;
     height: 900px;
-    background-color: rgba(255,255,255,0.2);
+    background-color: black;
     width: 300px;
+    flex-grow: 0;
+    flex-shrink: 0;
+
     display: flex;
     justify-content: space-around;
     align-items: center;
