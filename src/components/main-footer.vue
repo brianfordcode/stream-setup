@@ -42,12 +42,12 @@
 export default {
     data() {
         return {
-          twitchLogo: require('/public/social-links/twitch-logo.png'),
-          twitterLogo: require('/public/social-links/twitter-logo.png'),
-          youtubeLogo: require('/public/social-links/youtube-logo.png'),
-          discordLogo: require('/public/social-links/discord-logo.png'),
-          facebookLogo: require('/public/social-links/facebook-logo.png'),
-          websiteLogo: require('/public/social-links/website-logo.png'),
+          twitchLogo: require('@/assets/social-links/twitch-logo.png'),
+          twitterLogo: require('@/assets/social-links/twitter-logo.png'),
+          youtubeLogo: require('@/assets/social-links/youtube-logo.png'),
+          discordLogo: require('@/assets/social-links/discord-logo.png'),
+          facebookLogo: require('@/assets/social-links/facebook-logo.png'),
+          websiteLogo: require('@/assets/social-links/website-logo.png'),
         }
     }
 
@@ -105,6 +105,7 @@ export default {
 
 .sub-input::placeholder {
     color: white;
+    opacity: 0.5;
 }
 
 .sub-btn {

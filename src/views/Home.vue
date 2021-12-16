@@ -1,5 +1,5 @@
 <template>
-  <h1>home</h1>
+  <div>home</div>
 </template>
 
 <script>
@@ -8,6 +8,13 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+div {
+  height:calc(100vh - 206px);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 100px;
+  color: white;
+}
 </style>

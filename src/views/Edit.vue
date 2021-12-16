@@ -8,7 +8,7 @@
     <mainImg/>
   </div>
   
-  <sideBar/>
+  <!-- <sideBar/> -->
 
 </div>
 
@@ -43,10 +43,7 @@ export default {
 }
 
 .edit-container {
-  width: 800px;
-  /* margin: 0 auto; */
-  /* padding: 0 20px; */
-  /* min-height: 1000px; */
+  /* width: 800px; */
 }
 
 </style>

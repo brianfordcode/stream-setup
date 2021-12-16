@@ -1,7 +1,6 @@
 <template>
 
 <!-- MAIN IMAGE -->
-<!-- https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRekJKtc0jNpQ6WSma5IVnDTF7B_AI5k4Yg_Q&usqp=CAU -->
   <div
     class="container"
     @mousemove = "onMouseMove"
@@ -34,7 +33,7 @@
          	src="@/assets/target-icon.png"
             alt="target"
             draggable="false"
-    	    :style="{top: (item.y - 25) + 'px', left: (item.x - 25) + 'px'}"
+    	    :style="{top: (item.y - 15) + 'px', left: (item.x - 25) + 'px'}"
          />
 <!-- DETAILS BOX -->
       <div class="details-box"
@@ -57,6 +56,7 @@
                   <option value="desk">Desk</option>
                   <option value="mouse">Mouse</option>
                   <option value="computer">Computer</option>
+                  <option value="microphone">Microphone</option>
                   <option value="accessory">Accessory</option>
                   <option value="webcam">Webcam</option>
               </select>
@@ -110,7 +110,7 @@
             <!-- ICON -->
             <img class="icon" 
                     :src="getIconPic(element)"
-                    alt="item"
+                    :alt="element.category"
                     v-if="element.category"
                     style="height: 50px;"
                 >
@@ -149,7 +149,7 @@ export default {
       done: false,
       draggable: false,
       dragging: null,
-      mainImg: 'https://www.minimaldesksetups.com/wp-content/uploads/2020/09/Featureimage.jpg ',
+      mainImg: require('@/assets/setup-example.jpg'),
       
     }
   },
@@ -172,37 +172,37 @@ export default {
     },
     getIconPic(e) {
         if (e.category === 'accessory') {
-            return require('/public/icons/accessory.png')
+            return require('@/assets/icons/accessory.png')
         }
         if (e.category === 'chair') {
-            return require('/public/icons/chair.png')
+            return require('@/assets/icons/chair.png')
         }
         if (e.category === 'computer') {
-            return require('/public/icons/computer.png')
+            return require('@/assets/icons/computer.png')
         }
         if (e.category === 'desk') {
-            return require('/public/icons/desk.png')
+            return require('@/assets/icons/desk.png')
         }
         if (e.category === 'headset') {
-            return require('/public/icons/headset.png')
+            return require('@/assets/icons/headset.png')
         }
         if (e.category === 'keyboard') {
-            return require('/public/icons/keyboard.png')
+            return require('@/assets/icons/keyboard.png')
         }
         if (e.category === 'microphone') {
-            return require('/public/icons/microphone.png')
+            return require('@/assets/icons/microphone.png')
         }
         if (e.category === 'monitor') {
-            return require('/public/icons/monitor.png')
+            return require('@/assets/icons/monitor.png')
         }
         if (e.category === 'mouse') {
-            return require('/public/icons/mouse.png')
+            return require('@/assets/icons/mouse.png')
         }
         if (e.category === 'speaker') {
-            return require('/public/icons/speaker.png')
+            return require('@/assets/icons/speaker.png')
         }
         if (e.category === 'webcam') {
-            return require('/public/icons/webcam.png')
+            return require('@/assets/icons/webcam.png')
         }
     },
     onMouseMove(event) {

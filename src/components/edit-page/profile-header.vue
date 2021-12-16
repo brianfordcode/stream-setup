@@ -161,11 +161,11 @@
           allowComments: false,
           liveStatus: false,
         },
-        twitchLogo: require('/public/social-links/twitch-logo.png'),
-        twitterLogo: require('/public/social-links/twitter-logo.png'),
-        youtubeLogo: require('/public/social-links/youtube-logo.png'),
-        discordLogo: require('/public/social-links/discord-logo.png'),
-        websiteLogo: require('/public/social-links/website-logo.png'),
+        twitchLogo: require('@/assets/social-links/twitch-logo.png'),
+        twitterLogo: require('@/assets/social-links/twitter-logo.png'),
+        youtubeLogo: require('@/assets/social-links/youtube-logo.png'),
+        discordLogo: require('@/assets/social-links/discord-logo.png'),
+        websiteLogo: require('@/assets/social-links/website-logo.png'),
         
       }
     },

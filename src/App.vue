@@ -1,5 +1,7 @@
 <template>
+
   <div class="container">
+
     <navBar/>
 
     <router-view/>
@@ -12,7 +14,7 @@
 </template>
 
 <script>
-import navBar from './components/navbar.vue'
+import navBar from './components/navbar/navbar.vue'
 import mainFooter from './components/main-footer.vue'
 
 
