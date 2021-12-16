@@ -14,7 +14,7 @@ div {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  font-size: 100px;
+  font-size: 75px;
   color: white;
 }
 </style>

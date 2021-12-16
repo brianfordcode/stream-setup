@@ -3,11 +3,11 @@
   <div id="nav">
 
     <div class="nav-wrapper">
-      <div class="logo"><router-link to="/">MyStreamSetup</router-link></div>
+      <div class="logo"><router-link to="/">desca.io</router-link></div>
     
       <loggedIn v-if="loggedIn"/>
 
-      <notLoggedIn v-if="!loggedIn"/>
+      <notLoggedIn v-else/>
 
     </div>
     
@@ -24,7 +24,11 @@ export default {
   components: { notLoggedIn, loggedIn },
   data() {
     return {
-      loggedIn: false,
+    }
+  },
+  computed: {
+    loggedIn() {
+      return this.$store.state.loggedIn
     }
   }
 

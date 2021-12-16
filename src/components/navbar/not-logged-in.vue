@@ -8,13 +8,14 @@
     <div class="sign-in-wrapper">
         <p class="signin-btn" @click="loginOpen = !loginOpen">Log In</p>
 
-        <div class="sign-in-box" v-if="loginOpen"></div>
+        <div class="sign-in-box" v-if="loginOpen"><p @click="$store.dispatch('login')">login</p></div>
     </div>
     
 </div>
 </template>
 
 <script>
+
 export default {
     data() {
         return {
@@ -35,13 +36,18 @@ export default {
 }
 
 .sign-in-box {
-    height: 400px;
+    height: 100px;
     width: 300px;
     background-color: rgba(0,0,0,0.75);
     position: absolute;
     right: 0;
     z-index: 100000000;
     transform: translateY(10px);
+    color: white;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .search-login {

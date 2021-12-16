@@ -1,13 +1,13 @@
 <template>
     <div class="links-wrapper">
         <!-- <router-link to="/about">About</router-link> -->
-        <p class="save-btn">Save</p>
-        <router-link class="link" to="/edit">Edit</router-link>
+        <p class="save-btn" v-if="this.$route.name === 'Edit'">Save</p>
+        <router-link v-if="this.$route.name === 'Home' || this.$route.name === 'View'" class="link" to="/edit">Edit</router-link>
         <router-link class="link" to="/view">Preview</router-link>
         
         <div class="settings-wrapper">
             <img class="gear-icon" @click="settingsOpen = !settingsOpen" src="https://img.icons8.com/material-outlined/24/000000/settings.png"/>
-            <div class="settings-box" v-if="settingsOpen"></div>
+            <div class="settings-box" v-if="settingsOpen">Log Out</div>
         </div>
         
     </div>
@@ -61,6 +61,7 @@ export default {
     right: 0;
     z-index: 100000000;
     transform: translateY(10px);
+    color: white;
 }
 
 .settings-wrapper {

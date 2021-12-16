@@ -29,7 +29,7 @@
                         <img :src="facebookLogo" alt="facebook"/>
                       </a>
                   </div>
-                  <p>2021 MyStreamSetup</p>
+                  <p>2021 &#169; desca.io</p>
               </div>
           </div>
           
@@ -126,14 +126,17 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    
 }
 
 .sm-links {
     display: flex;
+    justify-content: space-between;
+    width: 40%;
 }
 
 .sm-links a > * {
-    margin-right: 3px;
+    /* margin-right: 5px; */
     margin-top: 3px;
     height: 20px;
 }
