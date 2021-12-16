@@ -7,7 +7,7 @@
         
         <div class="settings-wrapper">
             <img class="gear-icon" @click="settingsOpen = !settingsOpen" src="https://img.icons8.com/material-outlined/24/000000/settings.png"/>
-            <div class="settings-box" v-if="settingsOpen">Log Out</div>
+            <div class="settings-box" v-if="settingsOpen" @click="$store.dispatch('logout')">Log Out</div>
         </div>
         
     </div>
@@ -62,6 +62,9 @@ export default {
     z-index: 100000000;
     transform: translateY(10px);
     color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .settings-wrapper {
