@@ -56,7 +56,6 @@
     Edit Details
     </button>
 
-
     <!-- details box -->
     <div class="details-box"
          v-if="editOpen"

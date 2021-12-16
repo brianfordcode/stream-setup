@@ -36,14 +36,15 @@ export default {
   display: flex;
   justify-content: space-around;
   /* border: 1px solid black; */
-  width: 1200px;
+  /* min-width: 1200px; */
   flex-grow: 0;
   flex-shrink: 0;
   margin: 30px auto 100px auto;
 }
 
 .edit-container {
-  /* width: 800px; */
+  width: 800px;
+  margin: 0 auto;
 }
 
 </style>

@@ -46,5 +46,4 @@ function logOut() {
     signOut(auth)
 }
 
-
 export { login, logOut }

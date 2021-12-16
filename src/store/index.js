@@ -8,6 +8,7 @@ const store = createStore({
     return {
       user: null,
       loggedIn: false,
+      equipment: [],
     }
   },
   mutations: {
@@ -21,12 +22,14 @@ const store = createStore({
     }
   },
   actions: {
+    // LOGIN
     login() {
       console.log('login')
       login(user => {
         this.commit('setLoggedInUser', user);
       })
     },
+    // LOGOUT
     logout() {
       console.log('logout')
       logOut()

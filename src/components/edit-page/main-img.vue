@@ -214,7 +214,6 @@ export default {
         this.equipment[this.dragging].x = event.clientX - x
         this.equipment[this.dragging].y = event.clientY - y
 
-
     }
 
   }
