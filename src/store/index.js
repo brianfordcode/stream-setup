@@ -28,6 +28,11 @@ const store = createStore({
     },
     hideItem(state, index) {
       state.activeEditEquipment.items[index].display = false
+      // console.log(state.activeEditEquipment.items)
+    },
+    removeItem(state, index) {
+      console.log(state.activeEditEquipment.items)
+      state.activeEditEquipment.items.splice(index, 1)
     }
   },
   actions: {
@@ -58,6 +63,9 @@ const store = createStore({
     },
     hideItem(context, index) {
       context.commit('hideItem', index)
+    },
+    removeItem(context, index) {
+      context.commit('removeItem', index)
     }
   }
 })

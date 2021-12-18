@@ -21,7 +21,7 @@
 
           <img class="main-img"
                draggable="false"
-               @click="recordCoord"
+               @click="addItems"
                :src="mainImg"
           />
       </div>
@@ -80,7 +80,7 @@
             >ENTER</button>
             <button
               class="remove-btn btn"
-              @click.stop = "item.splice(index, 1)"
+              @click.stop="$store.dispatch('removeItem', index)"
             >REMOVE
             </button>
          </div>
@@ -137,26 +137,28 @@
 
   <div>{{this.equipment}}</div>
 
+  <!-- <itemsList/> -->
+
 </template>
 
 <script>
 import draggable from 'vuedraggable'
+import itemsList from './items-list.vue'
   
 export default {
   data() {
     return {
       equipment: [],
-      done: false,
       draggable: false,
       dragging: null,
       mainImg: require('@/assets/setup-example.jpg'),
       
     }
   },
-  components: { draggable },
+  components: { draggable, itemsList },
 
   methods: {
-    recordCoord(e) {
+    addItems(e) {
       const rect = e.target.getBoundingClientRect()
       const x = e.clientX - rect.left
       const y = e.clientY - rect.top
