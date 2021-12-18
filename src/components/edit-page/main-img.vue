@@ -87,125 +87,40 @@
     </div>
   </div>
 
-<!-- ITEMS SECTION-->
-
-      <!-- PLACEHOLDER -->
-    <div class="placeholder"
-        v-if="equipment.length===0"
-    >
-    Add your equipment info by clicking on your setup's image!
-    </div>
-
-    <!-- ITEMS LIST -->
-    <draggable 
-        v-model="this.equipment" 
-        group="items"
-        @start="drag=true" 
-        @end="drag=false" 
-        item-key="id"
-        class="items-list-container"
-    >
-        <template #item="{element}">
-            <div class="item-details"
-                @click.stop="element.display = !element.display"
-            >
-            <!-- ICON -->
-            <img class="icon" 
-                    :src="getIconPic(element)"
-                    :alt="element.category"
-                    v-if="element.category"
-                    style="height: 50px;"
-                >
-                <!-- NAME -->
-                <p style="color: white; padding-left: 10px">{{element.name}}</p>
-                <!-- STORE LINK -->
-                <a :href="element.url"
-                    class="store-link"
-                    target="_blank"
-                    v-if="element.url"
-                    >Visit Store
-                </a>
-            </div>
-        </template>
-    </draggable>
-
-    <p style="font-size: 14px; color: white; opacity: 0.5; margin-top: 10px"
-       v-if="equipment.length>1"
-    >
-    *drag to reorder
-    </p>
-
-  <div>{{this.equipment}}</div>
-
-  <!-- <itemsList/> -->
+  <itemsList/>
 
 </template>
 
 <script>
-import draggable from 'vuedraggable'
 import itemsList from './items-list.vue'
   
 export default {
   data() {
     return {
       equipment: [],
-      draggable: false,
+      x: 0,
+      y: 0,
       dragging: null,
       mainImg: require('@/assets/setup-example.jpg'),
       
     }
   },
-  components: { draggable, itemsList },
+  components: { itemsList },
 
   methods: {
     addItems(e) {
       const rect = e.target.getBoundingClientRect()
-      const x = e.clientX - rect.left
-      const y = e.clientY - rect.top
+      this.x = e.clientX - rect.left
+      this.y = e.clientY - rect.top
       const point = {
         category: '',
         name: '',
         url: '',
-        x,
-        y,
+        x: this.x,
+        y: this.y,
         display: true,
       }
       this.$store.dispatch('addItem', point)
-    },
-    getIconPic(e) {
-        if (e.category === 'accessory') {
-            return require('@/assets/icons/accessory.png')
-        }
-        if (e.category === 'chair') {
-            return require('@/assets/icons/chair.png')
-        }
-        if (e.category === 'computer') {
-            return require('@/assets/icons/computer.png')
-        }
-        if (e.category === 'desk') {
-            return require('@/assets/icons/desk.png')
-        }
-        if (e.category === 'headset') {
-            return require('@/assets/icons/headset.png')
-        }
-        if (e.category === 'keyboard') {
-            return require('@/assets/icons/keyboard.png')
-        }
-        if (e.category === 'microphone') {
-            return require('@/assets/icons/microphone.png')
-        }
-        if (e.category === 'monitor') {
-            return require('@/assets/icons/monitor.png')
-        }
-        if (e.category === 'mouse') {
-            return require('@/assets/icons/mouse.png')
-        }
-        if (e.category === 'speaker') {
-            return require('@/assets/icons/speaker.png')
-        }
-        if (e.category === 'webcam') {
-            return require('@/assets/icons/webcam.png')
-        }
     },
     onMouseMove(event) {
         event.preventDefault()
@@ -215,11 +130,7 @@ export default {
 
         this.equipment[this.dragging].x = event.clientX - x
         this.equipment[this.dragging].y = event.clientY - y
-
     },
-    addEquipment() {
-        this.equipment[index].display = false 
-    }
 
   }
 }
@@ -323,63 +234,6 @@ export default {
   .remove-btn {
       top: 0;
       background-color: rgb(192, 7, 7);
-  }
-
-  .items-list-container {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      grid-gap: 10px;
-      width: min-content;
-      /* border: 1px solid black; */
-  }
-
-  .placeholder {
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      border: 2px dashed white;
-      height: 200px;
-      text-align: center;
-      opacity: 0.5;
-      cursor: default;
-      color: white;
-  }
-
-  .item-details {
-      display: flex;
-      border: 1px solid white;
-      border-radius: 7px;
-      width: 227px;
-      min-height: 90px;
-      padding: 15px;
-      position: relative;
-      transition: .1s ease-in-out;
-      cursor: grab;
-  }
-
-  .item-details:hover {
-      transform: scale(1.01);
-  }
-
-  .item-details:active {
-      cursor: grabbing;
-  }
-
-  .store-link {
-      position: absolute;
-      opacity: 0.75;
-      bottom: 0;
-      right: 0;
-      padding: 10px;
-      text-decoration: none;
-      color: white;
-      background-color: green;
-      transition: .1s ease-in-out;
-      border-bottom-right-radius: 7px;
-  }
-
-  .store-link:hover {
-      opacity: 1;
   }
   
 </style>
