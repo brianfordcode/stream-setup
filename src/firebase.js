@@ -28,7 +28,6 @@ function login(callback) {
             const user = result.user;
             console.log(user)
             callback(user)
-            alert('logged In')
             // ...
         }).catch((error) => {
             // Handle Errors here.

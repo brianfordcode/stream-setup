@@ -6,6 +6,7 @@
   <div class="edit-container">
     <profileHeader style="z-index: 10000"/>
     <mainImg/>
+    <itemsList/>
   </div>
   
   <!-- <sideBar/> -->
@@ -15,8 +16,10 @@
 </template>
 
 <script>
-import mainImg from '../components/edit-page/main-img.vue'
 import profileHeader from '../components/edit-page/profile-header.vue'
+import mainImg from '../components/edit-page/main-img.vue'
+import itemsList from '../components/edit-page/items-list.vue'
+
 
 
 // placeholder sidebar
@@ -24,7 +27,7 @@ import sideBar from '../components/side-bar.vue'
 
 export default {
   components: {
-    mainImg, profileHeader, sideBar
+    mainImg, profileHeader, sideBar, itemsList,
   }
 
 }

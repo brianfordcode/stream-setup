@@ -25,6 +25,7 @@
                :src="mainImg"
           />
       </div>
+
 <!--  TARGET  -->
     <div v-for="(item, index) in $store.state.activeEditEquipment.items" :key="index">
     	<img class="target"
@@ -37,6 +38,7 @@
                      left: (item.x - 25) + 'px'
                     }"
          />
+
 <!-- DETAILS BOX -->
       <div class="details-box"
            v-if="item.display"
@@ -87,37 +89,31 @@
     </div>
   </div>
 
-  <itemsList/>
-
 </template>
 
 <script>
-import itemsList from './items-list.vue'
+
   
 export default {
   data() {
     return {
-      equipment: [],
-      x: 0,
-      y: 0,
       dragging: null,
       mainImg: require('@/assets/setup-example.jpg'),
       
     }
   },
-  components: { itemsList },
-
+  components: {},
   methods: {
     addItems(e) {
       const rect = e.target.getBoundingClientRect()
-      this.x = e.clientX - rect.left
-      this.y = e.clientY - rect.top
+      const x = e.clientX - rect.left
+      const y = e.clientY - rect.top
       const point = {
         category: '',
         name: '',
         url: '',
-        x: this.x,
-        y: this.y,
+        x,
+        y,
         display: true,
       }
       this.$store.dispatch('addItem', point)
@@ -128,8 +124,8 @@ export default {
 
         const {x, y} = this.$refs.imagesContainer.getBoundingClientRect()
 
-        this.equipment[this.dragging].x = event.clientX - x
-        this.equipment[this.dragging].y = event.clientY - y
+        this.$store.state.activeEditEquipment.items[this.dragging].x = event.clientX - x
+        this.$store.state.activeEditEquipment.items[this.dragging].y = event.clientY - y
     },
 
   }
