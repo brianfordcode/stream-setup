@@ -26,18 +26,20 @@
           />
       </div>
 <!--  TARGET  -->
-    <div v-for="(item, index) in equipment" :key="index">
+    <div v-for="(item, index) in $store.state.activeEditEquipment.items" :key="index">
     	<img class="target"
-            @click.stop="equipment[index].display = true"
+            @click.stop="item.display = true"
             @mousedown="dragging = index"
          	src="@/assets/target-icon.png"
             alt="target"
             draggable="false"
-    	    :style="{top: (item.y - 15) + 'px', left: (item.x - 25) + 'px'}"
+    	    :style="{top: (item.y - 15) + 'px',
+                     left: (item.x - 25) + 'px'
+                    }"
          />
 <!-- DETAILS BOX -->
       <div class="details-box"
-           v-if="equipment[index].display"
+           v-if="item.display"
            :style="{top: (item.y + 30) + 'px', left: (item.x) + 'px'}"
       >
           <div class="details-text-wrapper">
@@ -45,7 +47,7 @@
               <select
                   name="category"
                   id="category" 
-                  v-model="equipment[index].category"
+                  v-model="item.category"
                   style="width:200px; height: 30px;"
               >
                   <option value="none" disabled>Select Category</option>
@@ -64,21 +66,21 @@
 
           <div class="details-text-wrapper">
               <p style="color:white">Model:</p>
-              <input v-model="equipment[index].name"/>
+              <input v-model="item.name"/>
           </div>
 
           <div class="details-text-wrapper">
               <p style="color:white">URL:</p>
-              <input v-model="equipment[index].url"/>
+              <input v-model="item.url"/>
           </div>
 
             <button
                 class="enter-btn btn"
-                @click.stop="equipment[index].display = false"
+                @click.stop="$store.dispatch('hideItem', index)"
             >ENTER</button>
             <button
               class="remove-btn btn"
-              @click.stop = "equipment.splice(index, 1)"
+              @click.stop = "item.splice(index, 1)"
             >REMOVE
             </button>
          </div>
@@ -144,8 +146,6 @@ export default {
   data() {
     return {
       equipment: [],
-      x: 0,
-      y: 0,
       done: false,
       draggable: false,
       dragging: null,
@@ -158,17 +158,17 @@ export default {
   methods: {
     recordCoord(e) {
       const rect = e.target.getBoundingClientRect()
-      this.x = e.clientX - rect.left
-      this.y = e.clientY - rect.top
+      const x = e.clientX - rect.left
+      const y = e.clientY - rect.top
       const point = {
         category: '',
         name: '',
         url: '',
-        x: this.x,
-        y: this.y,
+        x,
+        y,
         display: true,
       }
-      this.equipment.push(point)
+      this.$store.dispatch('addItem', point)
     },
     getIconPic(e) {
         if (e.category === 'accessory') {
@@ -214,6 +214,9 @@ export default {
         this.equipment[this.dragging].x = event.clientX - x
         this.equipment[this.dragging].y = event.clientY - y
 
+    },
+    addEquipment() {
+        this.equipment[index].display = false 
     }
 
   }

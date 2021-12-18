@@ -1,11 +1,12 @@
 <template>
   <div class="container">
     
-    <!-- PROF PIC -->
+    <!-- PROF PIC https://img.icons8.com/ios-glyphs/50/000000/user--v1.png-->
       <div class="prof-pic">
         <img draggable="false" 
-             style="width: 120px; opacity: 0.2; height: auto;"
-             src="https://img.icons8.com/ios-glyphs/50/000000/user--v1.png"
+             style="width: 120px; height: auto;"
+             :src="$store.state.user.photoURL"
+             v-if="$store.state.user"
         />
       </div>
 

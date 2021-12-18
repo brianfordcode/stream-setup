@@ -28,6 +28,7 @@ function login(callback) {
             const user = result.user;
             console.log(user)
             callback(user)
+            alert('logged In')
             // ...
         }).catch((error) => {
             // Handle Errors here.
@@ -44,6 +45,7 @@ function login(callback) {
 
 function logOut() {
     signOut(auth)
+    alert('logged Out')
 }
 
 export { login, logOut }

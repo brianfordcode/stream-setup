@@ -8,10 +8,16 @@ const store = createStore({
     return {
       user: null,
       loggedIn: false,
-      equipment: [],
+      activeEditEquipment: {
+        items: [],
+
+      },
     }
   },
   mutations: {
+    addItem(state, item) {
+      state.activeEditEquipment.items.push(item)
+    },
     setLoggedInUser(state, user) {
       state.user = user;
       state.loggedIn = true;
@@ -19,6 +25,9 @@ const store = createStore({
     setLoggedOutUser(state) {
       state.user = null;
       state.loggedIn = false;
+    },
+    hideItem(state, index) {
+      state.activeEditEquipment.items[index].display = false
     }
   },
   actions: {
@@ -27,6 +36,9 @@ const store = createStore({
       console.log('login')
       login(user => {
         this.commit('setLoggedInUser', user);
+        
+        // EDIT PAGE OPENS AFTER LOG IN
+        router.push('Edit')
       })
     },
     // LOGOUT
@@ -36,6 +48,16 @@ const store = createStore({
       this.commit('setLoggedOutUser')
 
       router.push('/')
+    },
+    // SAVE
+    save(context, equipment) {
+
+    },
+    addItem(context, item) {
+      context.commit('addItem', item)
+    },
+    hideItem(context, index) {
+      context.commit('hideItem', index)
     }
   }
 })
