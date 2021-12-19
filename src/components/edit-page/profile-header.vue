@@ -1,11 +1,11 @@
 <template>
   <div class="container">
     
-    <!-- PROF PIC https://img.icons8.com/ios-glyphs/50/000000/user--v1.png-->
+    <!-- PROF PIC -->
       <div class="prof-pic">
         <img draggable="false" 
              style="width: 120px; height: auto;"
-             :src="$store.state.user.photoURL"
+             :src="$store.state.profileDetails.profPic"
              v-if="$store.state.user"
         />
       </div>
@@ -125,7 +125,7 @@
           >
           <div style="display: flex; flex-direction: column; padding-left: 5px">
             <p>Live Status</p>
-            <p style="font-size:10px;">(Let people know you’re live!)</p>
+            <p style="font-size:10px;">(Let people know you're live!)</p>
           </div>
         </div>
 
@@ -172,7 +172,6 @@
       },
       enterBtn() {
         this.$refs.textToggle.innerHTML =  !this.editOpen ? "Enter Details" : '&#8679;'
-
       }
     }
   }

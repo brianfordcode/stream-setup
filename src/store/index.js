@@ -26,9 +26,11 @@ const store = createStore({
       },
       setups: [
         {
+          id: 1,
           imageURL: require('@/assets/setup-example.jpg'),
         },
         {
+          id: 2,
           imageURL: require('@/assets/setup-example2.jpg'),
         },
       ]
@@ -42,6 +44,7 @@ const store = createStore({
     setLoggedInUser(state, user) {
       state.user = user;
       state.loggedIn = true;
+      state.profileDetails.profPic = user.photoURL
     },
     setLoggedOutUser(state) {
       state.user = null;

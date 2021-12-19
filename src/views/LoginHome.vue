@@ -6,8 +6,11 @@
 
     <profileHeader style="width: 800px; z-index=1000000;"/>
 
-    <div class="setup-links">
-        <router-link to="/Edit"><img class="setup-image" :src="$store.state.setups[0].imageURL" alt="main-img"></router-link>
+    <div class="setup-links-container">
+        <div class="setup-links" v-for="setup in $store.state.setups" :key="setup.id">
+            <router-link to="/Edit"><img class="setup-image" :src="setup.imageURL" alt="main-img"></router-link>
+        </div>
+        
         <div class="placeholder">Add more setups!</div>
     </div>
 
@@ -37,16 +40,23 @@ export default {
     height: 100%;
 }
 
-.setup-links {
+.setup-links-container {
     margin-top: 50px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 50px;
     width: min-content;
+    margin: 50px auto;
 }
 
 .setup-image {
     height: 250px;
+    box-shadow: 0px 0px 33px -20px #000000;
+    transition: .2s ease-in-out;
+}
+
+.setup-image:hover {
+    transform: scale(1.01);
 }
 
 .placeholder {
