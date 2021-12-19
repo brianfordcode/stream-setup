@@ -14,7 +14,7 @@
           <div
             @click="addMainImg"
             class="main-img-placeholder"
-            v-if="!$store.state.setupImages[0].imageURL"
+            v-if="!$store.state.setups[0].imageURL"
            >
             add image
           </div>
@@ -22,7 +22,7 @@
           <img class="main-img"
                draggable="false"
                @click="addItems"
-               :src="$store.state.setupImages[0].imageURL"
+               :src="$store.state.setups[0].imageURL"
           />
       </div>
 

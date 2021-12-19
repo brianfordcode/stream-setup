@@ -4,6 +4,8 @@
 
   <profileHeader style="z-index: 10000"/>
 
+  <p style="margin-top: 50px;">{{ $store.state.profileDetails }}</p>
+
   <mainImg/>
 
   <itemsList/>

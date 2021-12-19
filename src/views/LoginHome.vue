@@ -7,13 +7,11 @@
     <profileHeader style="width: 800px; z-index=1000000;"/>
 
     <div class="setup-links">
-        <router-link to="/Edit"><img class="setup-image" :src="$store.state.setupImages[0].imageURL" alt="main-img"></router-link>
+        <router-link to="/Edit"><img class="setup-image" :src="$store.state.setups[0].imageURL" alt="main-img"></router-link>
         <div class="placeholder">Add more setups!</div>
     </div>
 
 </div>
-
-
 
 
 

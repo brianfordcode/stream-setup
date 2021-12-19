@@ -4,7 +4,7 @@
 
     <navBar/>
 
-    <router-view style="flex-grow: 1;"/>
+    <router-view/>
 
     <mainFooter/> 
 

@@ -15,10 +15,10 @@
         <!-- PROFILE NAME -->
         <div class="name-live" style="display: flex; align-items: center">
 
-          <h1 class="prof-name">{{ profDetails.profName }}</h1>
-
-          <a :href="profDetails.socialLinks.twitchLink"
-             v-if="profDetails.liveStatus"
+          <h1 class="prof-name">{{ $store.state.profileDetails.profName }}</h1>
+          <!-- live status -->
+          <a :href="$store.state.profileDetails.socialLinks.twitchLink"
+             v-if="$store.state.profileDetails.liveStatus"
              target="_blank"
           >
           !LIVE
@@ -29,19 +29,22 @@
 
         <!-- LINKS -->
         <div class="links-wrapper">
-          <a v-if="profDetails.socialLinks.twitchLink" :href="profDetails.socialLinks.twitchLink" target="_blank">
+          <a v-if="$store.state.profileDetails.socialLinks.twitchLink" :href="$store.state.profileDetails.socialLinks.twitchLink" target="_blank">
             <img class="sm-logo" :src="twitchLogo" alt="twitch"/>
           </a>
-          <a v-if="profDetails.socialLinks.twitterLink" :href="profDetails.socialLinks.twitterLink" target="_blank">
+          <a v-if="$store.state.profileDetails.socialLinks.twitterLink" :href="$store.state.profileDetails.socialLinks.twitterLink" target="_blank">
             <img class="sm-logo" :src="twitterLogo" alt="twitter"/>
           </a>
-          <a v-if="profDetails.socialLinks.youtubeLink" :href="profDetails.socialLinks.youtubeLink" target="_blank">
+          <a v-if="$store.state.profileDetails.socialLinks.youtubeLink" :href="$store.state.profileDetails.socialLinks.youtubeLink" target="_blank">
             <img class="sm-logo" :src="youtubeLogo" alt="youtube"/>
           </a>
-          <a v-if="profDetails.socialLinks.discordLink" :href="profDetails.socialLinks.discordLink" target="_blank">
+          <a v-if="$store.state.profileDetails.socialLinks.discordLink" :href="$store.state.profileDetails.socialLinks.discordLink" target="_blank">
             <img class="sm-logo" :src="discordLogo" alt="discord"/>
           </a>
-          <a v-if="profDetails.socialLinks.websiteLink" :href="profDetails.socialLinks.websiteLink" target="_blank">
+          <a v-if="$store.state.profileDetails.socialLinks.facebookLink" :href="$store.state.profileDetails.socialLinks.facebookLink" target="_blank">
+            <img class="sm-logo" :src="facebookLogo" alt="discord"/>
+          </a>
+          <a v-if="$store.state.profileDetails.socialLinks.websiteLink" :href="$store.state.profileDetails.socialLinks.websiteLink" target="_blank">
             <img class="sm-logo" :src="websiteLogo" alt="website"/>
           </a>
         </div>
@@ -66,7 +69,7 @@
         <!-- PROFILE NAME -->
         <div class="name-input input">
           <p style="padding-right: 5px">Name</p>
-          <input type="text" v-model="profDetails.profName"/>
+          <input type="text" v-model="$store.state.profileDetails.profName"/>
         </div>
 
         <!-- UPLOAD PICTURE -->
@@ -75,35 +78,42 @@
         <!-- TWITCH -->
         <div class="twitch input">
           <img :src="twitchLogo" alt="twitch"/>
-          <input v-model="profDetails.socialLinks.twitchLink"
+          <input v-model="$store.state.profileDetails.socialLinks.twitchLink"
                   type="text"
           >
         </div>
         <!-- TWITTER -->
         <div class="twitter input">
           <img :src="twitterLogo" alt="twitter"/>
-          <input v-model="profDetails.socialLinks.twitterLink"
+          <input v-model="$store.state.profileDetails.socialLinks.twitterLink"
                   type="text"
           >
         </div>
         <!-- YOUTUBE -->
         <div class="youtube input">
           <img :src="youtubeLogo" alt="youtube"/>
-          <input v-model="profDetails.socialLinks.youtubeLink"
+          <input v-model="$store.state.profileDetails.socialLinks.youtubeLink"
                   type="text"
           >
         </div>
         <!-- DISCORD -->
         <div class="discord input">
           <img :src="discordLogo" alt="discord"/>
-          <input v-model="profDetails.socialLinks.discordLink"
+          <input v-model="$store.state.profileDetails.socialLinks.discordLink"
+                  type="text"
+          >
+        </div>
+        <!-- FACEBOOK -->
+        <div class="discord input">
+          <img :src="facebookLogo" alt="discord"/>
+          <input v-model="$store.state.profileDetails.socialLinks.facebookLink"
                   type="text"
           >
         </div>
         <!-- WEBSITE -->
         <div class="website input">
           <img :src="websiteLogo" alt="website"/>
-          <input v-model="profDetails.socialLinks.websiteLink"
+          <input v-model="$store.state.profileDetails.socialLinks.websiteLink"
                   type="text"
           >
         </div>
@@ -111,7 +121,7 @@
         <!-- ALLOW LIVE STATUS -->
         <div class="allow-comments">
           <input type="checkbox"
-                 v-model="profDetails.liveStatus"
+                 v-model="$store.state.profileDetails.liveStatus"
           >
           <div style="display: flex; flex-direction: column; padding-left: 5px">
             <p>Live Status</p>
@@ -122,14 +132,13 @@
         <!-- ALLOW COMMENTS -->
         <div class="allow-comments">
           <input type="checkbox"
-                 v-model="profDetails.allowComments"
+                 v-model="$store.state.profileDetails.allowComments"
           >
           <p>Allow Comments</p>
         </div>
 
       </div>
-    
-    
+
       <button class="enter-btn btn"
               @click="editOpen = false, enterBtn()"
       >
@@ -148,20 +157,8 @@
     data() {
       return {
         editOpen: false,
-        profDetails: {
-          profName: '',
-          profPic: '',
-          socialLinks: {
-            twitchLink: '',
-            twitterLink: '',
-            youtubeLink: '',
-            discordLink: '',
-            websiteLink: '',
-          },
-          allowComments: false,
-          liveStatus: false,
-        },
         twitchLogo: require('@/assets/social-links/twitch-logo.png'),
+        facebookLogo: require('@/assets/social-links/facebook-logo.png'),
         twitterLogo: require('@/assets/social-links/twitter-logo.png'),
         youtubeLogo: require('@/assets/social-links/youtube-logo.png'),
         discordLogo: require('@/assets/social-links/discord-logo.png'),
@@ -174,8 +171,6 @@
         console.log('profile picture upload')
       },
       enterBtn() {
-        console.log(this.profDetails)
-
         this.$refs.textToggle.innerHTML =  !this.editOpen ? "Enter Details" : '&#8679;'
 
       }

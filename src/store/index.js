@@ -11,10 +11,26 @@ const store = createStore({
       activeEditEquipment: {
         items: [],
       },
-      setupImages: [
+      profileDetails: {
+        profName: '',
+        profPic: '',
+        socialLinks: {
+          twitchLink: '',
+          twitterLink: '',
+          youtubeLink: '',
+          discordLink: '',
+          websiteLink: '',
+        },
+        allowComments: false,
+        liveStatus: false,
+      },
+      setups: [
         {
           imageURL: require('@/assets/setup-example.jpg'),
-        }
+        },
+        {
+          imageURL: require('@/assets/setup-example2.jpg'),
+        },
       ]
       
     }
