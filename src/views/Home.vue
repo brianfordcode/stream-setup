@@ -1,21 +1,18 @@
 <template>
-  <div>home</div>
+
+  <homeBanner/>
   
 </template>
 
 <script>
+import homeBanner from '../components/home-page/home-banner.vue'
+
 export default {
+  components: { homeBanner }
+
 
 }
 </script>
 
 <style scoped>
-div {
-  height:calc(100vh - 206px);
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  font-size: 75px;
-  color: white;
-}
 </style>
