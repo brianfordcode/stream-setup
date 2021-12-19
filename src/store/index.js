@@ -10,8 +10,13 @@ const store = createStore({
       loggedIn: false,
       activeEditEquipment: {
         items: [],
-
       },
+      setupImages: [
+        {
+          imageURL: require('@/assets/setup-example.jpg'),
+        }
+      ]
+      
     }
   },
   mutations: {
@@ -28,35 +33,36 @@ const store = createStore({
     },
     hideItem(state, index) {
       state.activeEditEquipment.items[index].display = false
-      // console.log(state.activeEditEquipment.items)
     },
     removeItem(state, index) {
-      console.log(state.activeEditEquipment.items)
       state.activeEditEquipment.items.splice(index, 1)
     }
   },
   actions: {
     // LOGIN
     login() {
-      console.log('login')
       login(user => {
         this.commit('setLoggedInUser', user);
         
         // EDIT PAGE OPENS AFTER LOG IN
-        router.push('Edit')
+        router.push('LoginHome')
       })
     },
     // LOGOUT
     logout() {
-      console.log('logout')
+      
       logOut()
-      this.commit('setLoggedOutUser')
 
       router.push('/')
+
+      this.commit('setLoggedOutUser')
+
+      setTimeout(() => {alert('logged Out')}, 500);
+      
     },
     // SAVE
     save(context, equipment) {
-
+      
     },
     addItem(context, item) {
       context.commit('addItem', item)

@@ -3,9 +3,9 @@
   <div id="nav">
 
     <div class="nav-wrapper">
-      <div class="logo"><router-link to="/">desca.io</router-link></div>
+      <router-link class="logo" to="/">desca.io</router-link>
     
-      <loggedIn v-if="loggedIn"/>
+      <loggedIn v-if="$store.state.loggedIn"/>
 
       <notLoggedIn v-else/>
 
@@ -38,10 +38,9 @@ export default {
 <style scoped>
 #nav {
   padding: 20px;
-  /* border-bottom: 1px solid black; */
   background-color: rgba(255,255,255,0.5);
   box-shadow: 0px 0px 33px -20px #000000;
-  height: 30px;
+  /* height: 30px; */
 }
 
 .nav-wrapper {

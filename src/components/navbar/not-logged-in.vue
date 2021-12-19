@@ -1,15 +1,12 @@
 <template>
-    <div class="search-login">
-        <div class="sub-box">
-            <input class="search-input" type="email" placeholder="Search for your favorite streamer">
-            <button class="search-btn">SEARCH</button>
-        </div>
+<div class="search-login" v-if="this.$route.name === 'Home'">
 
-    <div class="sign-in-wrapper">
-        <p class="signin-btn" @click="loginOpen = !loginOpen">Log In</p>
-
-        <div class="sign-in-box" v-if="loginOpen"><p @click="$store.dispatch('login')">login</p></div>
+    <div class="sub-box">
+        <input class="search-input" type="email" placeholder="Search for your favorite streamer">
+        <button class="search-btn">SEARCH</button>
     </div>
+
+    <p class="signin-btn" @click="$store.dispatch('login')">Log In</p>
     
 </div>
 </template>
@@ -19,7 +16,6 @@
 export default {
     data() {
         return {
-            loginOpen: false,
         }
     }
 
@@ -27,32 +23,21 @@ export default {
 </script>
 
 <style scoped>
-.signin-btn {
-    border: 1px solid black;
-    padding: 5px;
-    cursor: pointer;
-    margin-left: 50px;
-    height: min-content;
-}
-
-.sign-in-box {
-    height: 100px;
-    width: 300px;
-    background-color: rgba(0,0,0,0.75);
-    position: absolute;
-    right: 0;
-    z-index: 100000000;
-    transform: translateY(10px);
-    color: white;
-
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
 
 .search-login {
     display: flex;
-    align-items: center
+    align-items: center;
+}
+
+.search-input {
+    height: 35px;
+    width: 200px;
+    padding-left: 12px;
+    outline: none;
+    background-color: black;
+    box-shadow: none;
+    color: white;
+    border: none;
 }
 
 .search-btn {
@@ -69,23 +54,12 @@ export default {
     outline-width: 0;
 }
 
-.search-input {
-    height: 35px;
-    width: 200px;
-    padding-left: 12px;
-    outline: none;
-    background-color: black;
-    box-shadow: none;
-    color: white;
-    border: none;
+.signin-btn {
+    border: 1px solid black;
+    padding: 5px;
+    cursor: pointer;
+    margin-left: 20px;
+    height: min-content;
 }
 
-.search-input::placeholder {
-    color: white;
-    opacity: 0.5;
-}
-
-.sign-in-wrapper {
-    position: relative;
-}
 </style>

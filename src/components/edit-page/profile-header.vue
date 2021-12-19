@@ -254,6 +254,7 @@
     top: 0;
     transform: translateY(80px);
     background-color: rgba(0,0,0,0.75);
+    z-index: 100000;
   }
 
   .enter-btn {

@@ -1,37 +1,30 @@
 <template>
 
-<div class="container">
-  <img :src="selectedFile" :alt="selectedFile.name"/>
-  <input type="file" @change="onFileSelected">
-</div>
+
+  <profileHeader/>
+
 
 
 
 </template>
 
 <script>
+import profileHeader from '../components/edit-page/profile-header.vue'
+
 export default {
   data() {
     return {
-      selectedFile: '',
     }
   },
+  components: {
+    profileHeader 
+  },
   methods: {
-    onFileSelected(event) {
-      this.selectedFile = event.target.files[0]
-      console.log(this.selectedFile)
-    },
   }
 }
 
 </script>
 
 <style scoped>
-
-.container {
-  display: flex;
-  flex-direction: column;
-  width: min-content;
-}
 
 </style>

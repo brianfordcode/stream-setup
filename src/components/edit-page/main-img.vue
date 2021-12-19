@@ -14,7 +14,7 @@
           <div
             @click="addMainImg"
             class="main-img-placeholder"
-            v-if="!mainImg"
+            v-if="!$store.state.setupImages[0].imageURL"
            >
             add image
           </div>
@@ -22,7 +22,7 @@
           <img class="main-img"
                draggable="false"
                @click="addItems"
-               :src="mainImg"
+               :src="$store.state.setupImages[0].imageURL"
           />
       </div>
 
@@ -98,8 +98,6 @@ export default {
   data() {
     return {
       dragging: null,
-      mainImg: require('@/assets/setup-example.jpg'),
-      
     }
   },
   components: {},
@@ -148,7 +146,7 @@ export default {
       align-items: center;
       opacity: 0.5;
       cursor: pointer;
-      margin-bottom: 20px;
+      margin: 10px 0;
   }
   .main-img-placeholder:hover {
       opacity: 1;

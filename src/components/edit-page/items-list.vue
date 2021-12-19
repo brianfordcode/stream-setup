@@ -47,6 +47,7 @@
     </p>
 
   <div>{{$store.state.activeEditEquipment.items}}</div>
+
 </template>
 
 <script>

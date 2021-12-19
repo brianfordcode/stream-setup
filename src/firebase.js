@@ -44,7 +44,6 @@ function login(callback) {
 
 function logOut() {
     signOut(auth)
-    alert('logged Out')
 }
 
 export { login, logOut }
