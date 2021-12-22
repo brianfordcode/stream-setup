@@ -1,9 +1,13 @@
 <template>
   <div class="banner-container">
-      <div class="copy-wrapper">
+
+      <div class="copy-btn-wrapper">
+        <div class="copy-btn">
           <h1 class="copy">The #1 destination to share YOUR ultimate gaming or streaming station.</h1>
           <div class="get-started-btn">Get Started</div>
+        </div>
       </div>
+
       <img class="image" src="@/assets/setup-example.jpg" alt="image"/>
 
   </div>
@@ -13,11 +17,7 @@
 export default {
     data() {
         return {
-            images: [
-                {
-                    imageLink: require('@/assets/setup-example.jpg'),
-                },
-            ]
+            
         }
     }
 
@@ -27,7 +27,7 @@ export default {
 <style scoped>
 
 .banner-container {
-    height: 400px;
+    height: 500px;
     max-width: 1200px;
     margin: 0 auto;
     /* border: 1px solid yellow; */
@@ -35,14 +35,12 @@ export default {
     position: relative;
 }
 
-.copy-wrapper {
+.copy-btn-wrapper {
     width: 50%;
     height: 100%;
     display: flex;
     flex-direction: column;
-    transform: translateY(75px);
-    /* justify-content:start; */
-    align-items: center;
+    justify-content:space-around;
 }
 
 .copy {
@@ -59,6 +57,7 @@ export default {
     cursor: pointer;
     transition: .2s ease-in-out;
     margin-top: 20px;
+    width: max-content;
 }
 
 .get-started-btn:hover {
@@ -66,5 +65,19 @@ export default {
 
 }
 
+.copy-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media screen and (max-width: 1000px ) {
+    .image {
+        display: none;
+    }
+    .copy-btn-wrapper {
+        width: 100%;
+    }
+}
 
 </style>

@@ -3,7 +3,7 @@
   <div id="nav">
 
     <div class="nav-wrapper">
-      <router-link class="logo" to="/">desca.io</router-link>
+      <router-link class="logo" to="/">mysetup.io</router-link>
     
       <loggedIn v-if="$store.state.loggedIn"/>
 

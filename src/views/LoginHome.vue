@@ -1,22 +1,35 @@
 <template>
 
-<div class="loginhome-container">
+    <div class="loginhome-container">
 
-    <h1 style="color: white; padding-bottom: 50px">Welcome {{ $store.state.user.displayName }}</h1>
+        <h1
+            style="color: white; padding-bottom: 50px"
+            v-if="$store.state.user"
+        >
+        Welcome {{ $store.state.user.displayName }}
+        </h1>
 
-    <profileHeader style="width: 800px; z-index=1000000;"/>
+        <profileHeader style="width: 800px; z-index=1000000;"/>
 
-    <div class="setup-links-container">
-        <div class="setup-links" v-for="setup in $store.state.setups" :key="setup.id">
-            <router-link to="/Edit"><img class="setup-image" :src="setup.imageURL" alt="main-img"></router-link>
+        <div class="setup-links-container">
+            <div 
+                class="setup-links"
+                v-for="setup in $store.state.setups" 
+                :key="setup.id"
+            >
+                <router-link to="/Edit">
+                    <img
+                        class="setup-image"
+                        :src="setup.imageURL" 
+                        alt="main-img"
+                    />
+                </router-link>
+            </div>
+            
+            <div class="placeholder">Add more setups!</div>
         </div>
-        
-        <div class="placeholder">Add more setups!</div>
+
     </div>
-
-</div>
-
-
 
 </template>
 
@@ -24,10 +37,7 @@
 import profileHeader from '../components/edit-page/profile-header.vue'
 
 export default {
-    components: {
-        profileHeader
-    },
-
+    components: { profileHeader },
 }
 </script>
 

@@ -45,10 +45,12 @@ const store = createStore({
       state.user = user;
       state.loggedIn = true;
       state.profileDetails.profPic = user.photoURL
+      console.log(state.profileDetails)
     },
     setLoggedOutUser(state) {
       state.user = null;
       state.loggedIn = false;
+      state.profileDetails.profPic = null
     },
     hideItem(state, index) {
       state.activeEditEquipment.items[index].display = false

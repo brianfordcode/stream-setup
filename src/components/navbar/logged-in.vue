@@ -2,7 +2,7 @@
     <div class="links-wrapper">
 
         <div class="edit-page-links">
-            <router-link to="/LoginHome" v-if="$route.name === 'Edit' || 'Home'">My Profile</router-link>
+            <router-link to="/LoginHome" v-if="$route.name === 'Edit' || 'Home'">My Setups</router-link>
             <p class="save-btn" v-if="$route.name === 'Edit'" @click="$store.dispatch('save')">Save</p>
             <router-link  v-if="$route.name === 'Edit'" to="/edit">Edit</router-link>
             <router-link class="link" v-if="$route.name === 'Edit'" to="/view">Preview</router-link>

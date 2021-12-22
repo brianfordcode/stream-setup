@@ -30,6 +30,8 @@ const routes = [
   }
 ]
 
+// component: () => import('../views/LoginHome.vue')
+
 const router = createRouter({
   history: createWebHistory(),
   routes

@@ -29,7 +29,7 @@
                         <img :src="facebookLogo" alt="facebook"/>
                       </a>
                   </div>
-                  <p>2021 &#169; desca.io</p>
+                  <p>2021 &#169; mysetup.io</p>
               </div>
           </div>
           
