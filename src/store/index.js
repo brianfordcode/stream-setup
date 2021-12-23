@@ -11,7 +11,7 @@ const store = createStore({
       activeEditEquipment: {
         items: [],
       },
-      profileDetails: {
+        profileDetails: {
         profName: '',
         profPic: '',
         socialLinks: {
@@ -29,15 +29,15 @@ const store = createStore({
           id: 1,
           imageURL: require('@/assets/setup-example.jpg'),
         },
-        {
-          id: 2,
-          imageURL: require('@/assets/setup-example2.jpg'),
-        },
       ]
       
     }
   },
   mutations: {
+    save(state, setup) {
+      console.log('save')
+      console.log(state.activeEditEquipment.items)
+    },
     addItem(state, item) {
       state.activeEditEquipment.items.push(item)
     },
@@ -83,7 +83,7 @@ const store = createStore({
     },
     // SAVE
     save(context, equipment) {
-      
+      context.commit('save', equipment)
     },
     addItem(context, item) {
       context.commit('addItem', item)

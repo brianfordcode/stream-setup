@@ -1,7 +1,9 @@
 <template>
+  
+  
 
-  <div class="container">
-
+  <div class="app-container">
+    
     <navBar/>
 
     <router-view/>
@@ -32,6 +34,12 @@ export default {
 * {
   padding: 0;
   margin: 0;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 #app {

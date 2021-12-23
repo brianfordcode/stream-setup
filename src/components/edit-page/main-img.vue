@@ -6,10 +6,13 @@
     @mousemove = "onMouseMove"
     @mouseup = "dragging = null"
   >
+      
+
       <div
         class="images-container"
         ref = "imagesContainer"
       >
+      
           <!-- IMAGE PLACEHOLDER -->
           <div
             @click="addMainImg"
@@ -18,18 +21,21 @@
            >
             add image
           </div>
+            <div class="add-image-btn">Change Image</div>
+            <img class="main-img"
+                draggable="false"
+                @click="addItems"
+                :src="$store.state.setups[0].imageURL"
+            />
 
-          <img class="main-img"
-               draggable="false"
-               @click="addItems"
-               :src="$store.state.setups[0].imageURL"
-          />
+
+
       </div>
 
 <!--  TARGET  -->
     <div v-for="(item, index) in $store.state.activeEditEquipment.items" :key="index">
     	<img class="target"
-            @click.stop="item.display = true"
+            @dblclick.stop="item.display = !item.display"
             @mousedown="dragging = index"
          	src="@/assets/target-icon.png"
             alt="target"
@@ -148,6 +154,7 @@ export default {
       cursor: pointer;
       margin: 10px 0;
   }
+
   .main-img-placeholder:hover {
       opacity: 1;
   }
@@ -158,6 +165,16 @@ export default {
     margin: 10px 0;
     cursor: crosshair;
     box-shadow: 0px 0px 33px -20px #000000;
+  }
+
+  .add-image-btn {
+    position: absolute;
+    bottom: 0;
+    color: white;
+    background: green;
+    padding: 7px;
+    transform: translateY(-14px);
+    cursor: pointer;
   }
   
   .target {

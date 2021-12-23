@@ -3,10 +3,20 @@
   <div id="nav">
 
     <div class="nav-wrapper">
-      <router-link class="logo" to="/">mysetup.io</router-link>
+
+      <!-- LOGO -->
+      <router-link  to="/">
+        <img
+          src="@/assets/logo.png"
+          alt="logo"
+          style="width: 120px"
+        />
+        </router-link>
     
+      <!-- IF LOGGED IN -->
       <loggedIn v-if="$store.state.loggedIn"/>
 
+      <!-- IF LOGGED OUT -->
       <notLoggedIn v-else/>
 
     </div>
@@ -37,10 +47,11 @@ export default {
 
 <style scoped>
 #nav {
-  padding: 20px;
-  background-color: rgba(255,255,255,0.5);
+  background-color: rgba(255,255,255,0.65);
   box-shadow: 0px 0px 33px -20px #000000;
-  /* height: 30px; */
+  position: fixed;
+  z-index: 10000000;
+  width: 100%;
 }
 
 .nav-wrapper {
@@ -48,12 +59,8 @@ export default {
   align-items: center;
   justify-content: space-between;
   max-width: 1200px;
-  /* border: 1px solid blue; */
   margin: 0 auto;
-}
-
-#nav a.router-link-exact-active {
-  color: rgb(33,51,77);
+  height: 60px;
 }
 
 </style>

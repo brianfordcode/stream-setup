@@ -1,30 +1,38 @@
 <template>
-<div class="search-login" v-if="this.$route.name === 'Home'">
 
-    <div class="sub-box">
-        <input class="search-input" type="email" placeholder="Search for your favorite streamer">
-        <button class="search-btn">SEARCH</button>
+    <div 
+        class="not-logged-in-wrapper"
+        v-if="this.$route.name === 'Home'"
+    >
+
+        <!-- SEARCH BAR -->
+        <div>
+            <input
+                class="search-input"
+                type="email"
+                placeholder="Search for your favorite streamer"
+            >
+            <button class="search-btn">SEARCH</button>
+        </div>
+        <!-- LOG IN BUTTON -->
+        <div
+            class="login-btn"
+            @click="$store.dispatch('login')"
+        >
+        Log In
+        </div>
+        
     </div>
 
-    <p class="signin-btn" @click="$store.dispatch('login')">Log In</p>
-    
-</div>
 </template>
 
 <script>
 
-export default {
-    data() {
-        return {
-        }
-    }
-
-}
 </script>
 
 <style scoped>
 
-.search-login {
+.not-logged-in-wrapper {
     display: flex;
     align-items: center;
 }
@@ -35,7 +43,6 @@ export default {
     padding-left: 12px;
     outline: none;
     background-color: black;
-    box-shadow: none;
     color: white;
     border: none;
 }
@@ -45,16 +52,11 @@ export default {
     background-color: green;
     border: none;
     height: 35px;
-    outline: none;
-    width: 75px;
+    padding: 0 5px;
     cursor: pointer;
 }
 
-.search-btn:focus {
-    outline-width: 0;
-}
-
-.signin-btn {
+.login-btn {
     border: 1px solid black;
     padding: 5px;
     cursor: pointer;

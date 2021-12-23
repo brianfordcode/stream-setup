@@ -26,7 +26,7 @@
                 </router-link>
             </div>
             
-            <div class="placeholder">Add more setups!</div>
+            <router-link  to="Edit"><div class="placeholder">Add more setups!</div></router-link>
         </div>
 
     </div>
@@ -45,7 +45,7 @@ export default {
 
 .loginhome-container {
     max-width: 1200px;
-    margin: 50px auto;
+    margin: 0 auto;
     padding: 0 30px;
     height: 100%;
 }

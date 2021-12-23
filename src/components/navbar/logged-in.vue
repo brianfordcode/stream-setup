@@ -1,59 +1,83 @@
 <template>
-    <div class="links-wrapper">
 
-        <div class="edit-page-links">
-            <router-link to="/LoginHome" v-if="$route.name === 'Edit' || 'Home'">My Setups</router-link>
-            <p class="save-btn" v-if="$route.name === 'Edit'" @click="$store.dispatch('save')">Save</p>
-            <router-link  v-if="$route.name === 'Edit'" to="/edit">Edit</router-link>
-            <router-link class="link" v-if="$route.name === 'Edit'" to="/view">Preview</router-link>
-            <p v-if="$route.name === 'Edit'">Share</p>
-            <p @click="$store.dispatch('logout')">Log Out</p>
+    <div class="logged-in-wrapper">
+
+        <!-- SAVE -->
+        <div 
+            class="btn" 
+            v-if="$route.name === 'Edit'"
+            @click="$store.dispatch('save')"
+            style="background-color: green;"
+        >
+        Save
         </div>
+
+        <!-- EDIT -->
+        <router-link
+            v-if="$route.name === 'View'"
+            to="/edit"
+            style="background-color: rgb(245, 101, 35);"
+        >
+        Edit
+        </router-link>
+
+        <!-- PREVIEW -->
+        <router-link
+            v-if="$route.name === 'Edit'"
+            to="/view"
+            style="background-color: purple;"
+        >
+        Preview
+        </router-link>
+
+        <!-- SHARE -->
+        <div
+            v-if="$route.name === 'View'"
+            style="background-color: rgb(88, 156, 179);"
+        >
+        Share
+        </div>
+
+        <!-- MY SETUPS -->
+        <router-link
+            to="/LoginHome" 
+            v-if="$route.name === 'Edit' || $route.name === 'Home'"
+            style="background-color: rgb(42, 43, 117);"
+        >
+        My Setups
+        </router-link>
+
+        <!-- LOG OUT -->
+        <div
+            @click="$store.dispatch('logout')"
+            style="color: black; border: 1px solid black;"
+        >
+        Log Out
+        </div>
+
     </div>
 
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-        }
-        
-    }
-}
+
 </script>
 
 <style scoped>
-.links-wrapper {
+
+.logged-in-wrapper {
     display: flex;
     align-items: center;
-    justify-content: space-between;
 }
 
-.edit-page-links {
-    display: flex;
-    align-items: center
-}
-
-.edit-page-links > * {
+/* BUTTONS */
+.logged-in-wrapper > * {
     margin: 0 10px;
     text-decoration: none;
     color: black;
     cursor: pointer;
-}
-
-.link a {
-  border: 1px solid black;
-  padding: 5px;
-}
-
-.gear-icon {
-    margin-left: 15px;
-    cursor: pointer;
-}
-
-#nav a.router-link-exact-active {
-  color: rgb(33,51,77);
+    color: white;
+    padding: 6px;
 }
 
 </style>
