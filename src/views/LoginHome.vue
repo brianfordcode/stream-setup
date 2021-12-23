@@ -2,21 +2,26 @@
 
     <div class="loginhome-container">
 
+        <!-- WELCOME USER -->
         <h1
-            style="color: white; padding-bottom: 50px"
+            style="color: white; padding: 30px 0"
             v-if="$store.state.user"
         >
         Welcome {{ $store.state.user.displayName }}
         </h1>
 
-        <profileHeader style="width: 800px; z-index=1000000;"/>
+        <!-- PROFILE HEADER -->
+        <profileHeader style="width: 800px;"/>
+
 
         <div class="setup-links-container">
+            <!-- LIST CONTAINER -->
             <div 
                 class="setup-links"
                 v-for="setup in $store.state.setups" 
                 :key="setup.id"
             >
+                <!-- IMAGE -->
                 <router-link to="/Edit">
                     <img
                         class="setup-image"
@@ -25,8 +30,11 @@
                     />
                 </router-link>
             </div>
-            
-            <router-link  to="Edit"><div class="placeholder">Add more setups!</div></router-link>
+
+            <!-- PLACEHOLDER -->
+            <router-link to="Edit">
+                <div class="placeholder">Add more setups!</div>
+            </router-link>
         </div>
 
     </div>
@@ -45,17 +53,13 @@ export default {
 
 .loginhome-container {
     max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 30px;
-    height: 100%;
+    margin: 60px auto 0 auto;
 }
 
 .setup-links-container {
-    margin-top: 50px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 50px;
-    width: min-content;
     margin: 50px auto;
 }
 

@@ -8,20 +8,17 @@
         </div>
       </div>
 
-      <img class="image" src="@/assets/setup-example.jpg" alt="image"/>
+      <img
+        class="image"
+        src="@/assets/setup-example.jpg"
+        alt="image"
+      />
 
   </div>
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            
-        }
-    }
 
-}
 </script>
 
 <style scoped>
@@ -29,8 +26,7 @@ export default {
 .banner-container {
     height: 500px;
     max-width: 1200px;
-    margin: 0 auto;
-    /* border: 1px solid yellow; */
+    margin: 60px auto 0 auto;
     display: flex;
     position: relative;
 }

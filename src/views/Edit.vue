@@ -5,8 +5,6 @@
 
   <profileHeader style="z-index: 10000"/>
 
-  <p style="margin-top: 50px;">{{ $store.state.profileDetails }}</p>
-
   <mainImg/>
 
   <itemsList/>
@@ -32,7 +30,8 @@ export default {
 
 .edit-container {
   width: 800px;
-  margin: 30px auto;
+  margin: 100px auto 0 auto;
+  /* height: 100vh; */
 }
 
 </style>

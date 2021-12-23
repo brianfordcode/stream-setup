@@ -1,17 +1,10 @@
 <template>
-  
-  
 
-  <div class="app-container">
-    
     <navBar/>
 
     <router-view/>
 
     <mainFooter/> 
-
-  </div>
-  
 
 </template>
 
@@ -34,21 +27,15 @@ export default {
 * {
   padding: 0;
   margin: 0;
-}
-
-.app-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  font-family: 'Sofia Pro', sans-serif;
 }
 
 #app {
-  font-family: 'Sofia Pro', sans-serif;
+  height: 100vh;
   background: linear-gradient(45deg, rgba(36,55,81,1) 0%, rgba(56,90,139,1) 50%, rgba(7,11,16,1) 100%);
-  min-height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
 }
-
 
 </style>

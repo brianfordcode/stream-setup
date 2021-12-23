@@ -2,7 +2,7 @@
 
 <!-- MAIN IMAGE -->
   <div
-    class="container"
+    class="main-container"
     @mousemove = "onMouseMove"
     @mouseup = "dragging = null"
   >
@@ -139,7 +139,7 @@ export default {
 
 <style scoped>
   
-  .container {
+  .main-container {
     position: relative;
   }
 
@@ -152,7 +152,6 @@ export default {
       align-items: center;
       opacity: 0.5;
       cursor: pointer;
-      margin: 10px 0;
   }
 
   .main-img-placeholder:hover {
@@ -162,7 +161,7 @@ export default {
   .main-img {
     width: 800px;
     height: auto;
-    margin: 10px 0;
+    padding: 10px 0;
     cursor: crosshair;
     box-shadow: 0px 0px 33px -20px #000000;
   }

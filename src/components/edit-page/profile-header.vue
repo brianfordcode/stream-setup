@@ -12,41 +12,101 @@
 
       <div class="details">
 
-        <!-- PROFILE NAME -->
-        <div class="name-live" style="display: flex; align-items: center">
+        <div
+          class="name-live"
+          style="display: flex; align-items: center"
+        >
 
+          <!-- NAME -->
           <h1 class="prof-name">{{ $store.state.profileDetails.profName }}</h1>
+
           <!-- live status -->
-          <a :href="$store.state.profileDetails.socialLinks.twitchLink"
-             v-if="$store.state.profileDetails.liveStatus"
-             target="_blank"
+          <a
+            :href="$store.state.profileDetails.socialLinks.twitchLink"
+            v-if="$store.state.profileDetails.liveStatus"
+            target="_blank"
           >
           !LIVE
           </a>
 
         </div>
-        
 
         <!-- LINKS -->
         <div class="links-wrapper">
-          <a v-if="$store.state.profileDetails.socialLinks.twitchLink" :href="$store.state.profileDetails.socialLinks.twitchLink" target="_blank">
-            <img class="sm-logo" :src="twitchLogo" alt="twitch"/>
+
+          <!-- TWITCH -->
+          <a
+            v-if="$store.state.profileDetails.socialLinks.twitchLink"
+            :href="$store.state.profileDetails.socialLinks.twitchLink"
+            target="_blank"
+          >
+            <img
+              class="sm-logo"
+              :src="twitchLogo"
+              alt="twitch"
+            />
           </a>
-          <a v-if="$store.state.profileDetails.socialLinks.twitterLink" :href="$store.state.profileDetails.socialLinks.twitterLink" target="_blank">
-            <img class="sm-logo" :src="twitterLogo" alt="twitter"/>
+          <!-- TWITTER -->
+          <a
+            v-if="$store.state.profileDetails.socialLinks.twitterLink"
+            :href="$store.state.profileDetails.socialLinks.twitterLink"
+            target="_blank"
+          >
+            <img
+              class="sm-logo"
+              :src="twitterLogo"
+              alt="twitter"
+            />
           </a>
-          <a v-if="$store.state.profileDetails.socialLinks.youtubeLink" :href="$store.state.profileDetails.socialLinks.youtubeLink" target="_blank">
-            <img class="sm-logo" :src="youtubeLogo" alt="youtube"/>
+          <!-- YOUTUBE -->
+          <a
+            v-if="$store.state.profileDetails.socialLinks.youtubeLink"
+            :href="$store.state.profileDetails.socialLinks.youtubeLink"
+            target="_blank"
+          >
+            <img
+              class="sm-logo"
+              :src="youtubeLogo"
+              alt="youtube"
+            />
           </a>
-          <a v-if="$store.state.profileDetails.socialLinks.discordLink" :href="$store.state.profileDetails.socialLinks.discordLink" target="_blank">
-            <img class="sm-logo" :src="discordLogo" alt="discord"/>
+          <!-- DISCORD -->
+          <a
+            v-if="$store.state.profileDetails.socialLinks.discordLink"
+            :href="$store.state.profileDetails.socialLinks.discordLink"
+            target="_blank"
+          >
+            <img
+              class="sm-logo"
+              :src="discordLogo"
+              alt="discord"
+            />
           </a>
-          <a v-if="$store.state.profileDetails.socialLinks.facebookLink" :href="$store.state.profileDetails.socialLinks.facebookLink" target="_blank">
-            <img class="sm-logo" :src="facebookLogo" alt="discord"/>
+          <!-- FACEBOOK -->
+          <a
+            v-if="$store.state.profileDetails.socialLinks.facebookLink"
+            :href="$store.state.profileDetails.socialLinks.facebookLink"
+            target="_blank"
+          >
+            <img
+              class="sm-logo"
+              :src="facebookLogo"
+              alt="facebook"
+            />
           </a>
-          <a v-if="$store.state.profileDetails.socialLinks.websiteLink" :href="$store.state.profileDetails.socialLinks.websiteLink" target="_blank">
-            <img class="sm-logo" :src="websiteLogo" alt="website"/>
+          <!-- WEBSITE -->
+          <a
+            v-if="$store.state.profileDetails.socialLinks.websiteLink"
+            :href="$store.state.profileDetails.socialLinks.websiteLink"
+            target="_blank"
+          >
+            <img
+              class="sm-logo"
+              :src="websiteLogo"
+              alt="website"
+            />
           </a>
+
         </div>
 
       </div>

@@ -1,4 +1,6 @@
 <template>
+<div class="main-container">
+
 
       <!-- PLACEHOLDER -->
     <div class="placeholder"
@@ -46,7 +48,9 @@
     *drag to reorder
     </p>
 
-  <div>{{$store.state.activeEditEquipment.items}}</div>
+</div>
+
+  <!-- <div>{{$store.state.activeEditEquipment.items}}</div> -->
 
 </template>
 
@@ -141,6 +145,10 @@ export default {
 </script>
 
 <style scoped>
+
+.main-container {
+    margin-bottom: 50px;
+}
 
 .placeholder {
     display: flex;
