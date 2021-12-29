@@ -22,7 +22,7 @@
                 :key="setup.id"
             >
                 <!-- IMAGE -->
-                <router-link to="/Edit">
+                <router-link :to="`/edit/${setup.id}`">
                     <img
                         class="setup-image"
                         :src="setup.imageURL" 

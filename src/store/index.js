@@ -12,25 +12,31 @@ const store = createStore({
         items: [],
       },
         profileDetails: {
-        profName: '',
-        profPic: '',
-        socialLinks: {
-          twitchLink: '',
-          twitterLink: '',
-          youtubeLink: '',
-          discordLink: '',
-          websiteLink: '',
+          profName: '',
+          profPic: '',
+          socialLinks: {
+            twitchLink: '',
+            twitterLink: '',
+            youtubeLink: '',
+            discordLink: '',
+            websiteLink: '',
         },
         allowComments: false,
         liveStatus: false,
       },
       setups: [
         {
-          id: 1,
+          id: '1',
           imageURL: require('@/assets/setup-example.jpg'),
+          items: []
         },
       ]
       
+    }
+  },
+  getters: {
+    setup: state => id => {
+      return state.setups.find(s => s.id === id)
     }
   },
   mutations: {
