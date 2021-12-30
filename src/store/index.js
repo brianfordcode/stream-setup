@@ -25,11 +25,6 @@ const store = createStore({
         liveStatus: false,
       },
       setups: [
-        {
-          id: '1',
-          imageURL: require('@/assets/setup-example.jpg'),
-          items: []
-        },
       ]
       
     }
@@ -63,6 +58,11 @@ const store = createStore({
     },
     removeItem(state, index) {
       state.activeEditEquipment.items.splice(index, 1)
+    },
+    addSetup(state, item) {
+      state.setups.push(item)
+
+      // router.push('edit')
     }
   },
   actions: {
@@ -99,6 +99,9 @@ const store = createStore({
     },
     removeItem(context, index) {
       context.commit('removeItem', index)
+    },
+    addSetup(context, item) {
+      context.commit('addSetup', item)
     }
   }
 })

@@ -32,9 +32,7 @@
             </div>
 
             <!-- PLACEHOLDER -->
-            <router-link to="Edit">
-                <div class="placeholder">Add more setups!</div>
-            </router-link>
+            <div @click="makeNewSetup" class="placeholder">Add more setups!</div>
         </div>
 
     </div>
@@ -46,6 +44,18 @@ import profileHeader from '../components/edit-page/profile-header.vue'
 
 export default {
     components: { profileHeader },
+
+    methods: {
+        makeNewSetup() {
+            const id = Date.now() + ''
+            const setup = {
+                id,
+                imageURL: `https://picsum.photos/seed/${id}/333/255`,
+                items: []
+            }
+            this.$store.dispatch('addSetup', setup)
+        }
+    }
 }
 </script>
 
