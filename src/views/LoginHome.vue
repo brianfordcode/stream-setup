@@ -23,40 +23,88 @@
             <!-- LIST CONTAINER -->
             <div 
                 class="setup-links"
-                v-for="setup in $store.state.setups" 
+                v-for="(setup, index) in $store.state.setups" 
                 :key="setup.id"
             >
                 <!-- SETUP CONTAINER -->
-                <div class="setup-image-container">
-                        <!-- IMAGE -->
-                        <img
-                            draggable="false"
-                            class="setup-image"
-                            :src="setup.imageURL" 
-                            alt="main-img"
-                        />
+                <div
+                    class="setup-image-container"
+                    @mouseover="showButtons(index)"
+                    @mouseleave="resetButtons()"
+                >
+                    <!-- IMAGE -->
+                    <img
+                        draggable="false"
+                        class="setup-image"
+                        :src="setup.imageURL" 
+                        alt="main-img"
+                    />
                     <!-- BUTTONS -->
+                    <div
+                        class="buttons-container"
+                        v-if="selectedSetup == index"
+                    >
                         <!-- DELETE BTN -->
                         <div
+                            class="delete-modal"
+                            v-if="modalOpen"
+                        >
+
+                            <div class="modal-content">
+                                 Are you sure you want<br>to delete this setup?
+                                <div class="options">
+                                    <p
+                                        class="yes-btn"
+                                        @click="$store.dispatch('deleteSetup', setup.id), resetButtons()"
+                                    >
+                                    Yes
+                                    </p>
+                                    <p
+                                        class="no-btn"
+                                        @click="resetButtons()"
+                                    >
+                                    No
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+                        
+                        <div
                             class="btn delete-btn"
-                            @click="$store.dispatch('deleteSetup', setup.id)"
+                            @click="modalOpen = true"
+                            v-if="!modalOpen"
                         >
                         Delete
                         </div>
+
+                        
                         <!-- EDIT BTN -->
                         <router-link :to="`/edit/${setup.id}`">
-                            <div class="btn edit-btn">edit</div>
+                            <div
+                                class="btn edit-btn"
+                                v-if="!modalOpen"
+                            >
+                            Edit
+                            </div>
                         </router-link>
                         <!-- PREVIEW -->
                         <router-link :to="`/edit/${setup.id}`">
-                            <div class="btn preview-btn">Preview</div>
+                            <div
+                                class="btn preview-btn"
+                                v-if="!modalOpen"
+                            >
+                            Preview
+                            </div>
                         </router-link>
                         <!-- SHARE BTN -->
                         <div
                             class="btn share-btn"
+                            v-if="!modalOpen"
                         >
                         Share
                         </div>
+                    </div>
                         
                     
                 </div>
@@ -85,6 +133,12 @@ import profileHeader from '../components/edit-page/profile-header.vue'
 
 export default {
     components: { profileHeader },
+    data() {
+        return {
+            modalOpen: false,
+            selectedSetup: null,
+        }
+    },
 
     methods: {
         makeNewSetup() {
@@ -99,8 +153,17 @@ export default {
             // innerhtml of setup box
             this.$refs.placeholder.innerHTML = this.$store.state.setups.length > 1 ? "Add a Setup" : "Add More Setups!"
 
+            this.modalOpen = false;
+            
             // open new setup
             this.$router.push(`/edit/${id}`)
+        },
+        showButtons(index) {
+            this.selectedSetup = index
+        },
+        resetButtons() {
+            this.selectedSetup = null
+            this.modalOpen = false
         }
     }
 }
@@ -150,6 +213,48 @@ export default {
 
 .delete-btn {
     bottom: 0;
+    background-color: rgb(192, 7, 7);
+}
+
+.delete-modal {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgba(192, 7, 7, 0.25);
+    z-index: 1000;
+}
+
+.delete-modal > * {
+    color: white;
+    text-align: center;
+    
+}
+
+.options {
+    margin-top: 10px;
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.options p {
+    padding: 7px 0;
+    width: 50px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.yes-btn {
+    background-color: green;
+    
+}
+
+.no-btn {
     background-color: rgb(192, 7, 7);
 }
 
