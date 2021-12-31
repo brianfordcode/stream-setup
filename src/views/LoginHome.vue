@@ -4,7 +4,7 @@
 
         <!-- WELCOME USER -->
         <h1
-            style="color: white; padding: 30px 0"
+            style="color: white; padding: 30px 0;"
             v-if="$store.state.user"
         >
         Welcome {{ $store.state.user.displayName }}
@@ -89,7 +89,7 @@
                             </div>
                         </router-link>
                         <!-- PREVIEW -->
-                        <router-link :to="`/edit/${setup.id}`">
+                        <router-link to="/view">
                             <div
                                 class="btn preview-btn"
                                 v-if="!modalOpen"
@@ -124,7 +124,7 @@
 
     </div>
 
-    <div>{{ $store.state.setups }}</div>
+    <!-- <div>{{ $store.state.setups }}</div> -->
 
 </template>
 

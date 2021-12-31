@@ -241,6 +241,7 @@
 <style scoped>
 
   .container {
+    min-width: 800px;
     height: 80px;
     margin: 0 auto 10px auto;
     background-color: rgba(255,255,255,.25);

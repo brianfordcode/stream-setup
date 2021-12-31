@@ -7,7 +7,7 @@
 
   <mainImg/>
 
-  <div style="padding-bottom: 50px;">{{ $store.state.setups }}</div>
+  <!-- <div style="padding-bottom: 50px;">{{ $store.state.setups }}</div> -->
 
 </div>
 
