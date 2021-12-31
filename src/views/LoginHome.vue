@@ -32,7 +32,14 @@
             </div>
 
             <!-- PLACEHOLDER -->
-            <div @click="makeNewSetup" class="placeholder">Add more setups!</div>
+            <div
+                @click="makeNewSetup"
+                class="placeholder"
+                ref="placeholder"
+            >
+            Add a Setup!
+            </div>
+            
         </div>
 
     </div>
@@ -54,6 +61,9 @@ export default {
                 items: []
             }
             this.$store.dispatch('addSetup', setup)
+
+            // innerhtml of setup box
+            this.$refs.placeholder.innerHTML = this.$store.state.setups.length > 1 ? "Add a Setup" : "Add More Setups!"
         }
     }
 }

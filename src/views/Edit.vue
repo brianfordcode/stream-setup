@@ -7,7 +7,7 @@
 
   <mainImg/>
 
-  <itemsList/>
+  <!-- <itemsList/> -->
 
 </div>
 

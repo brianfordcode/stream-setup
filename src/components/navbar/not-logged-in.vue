@@ -39,7 +39,7 @@
 
 .search-input {
     height: 35px;
-    width: 200px;
+    width: 225px;
     padding-left: 12px;
     outline: none;
     background-color: black;

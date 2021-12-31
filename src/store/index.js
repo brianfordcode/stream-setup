@@ -24,9 +24,7 @@ const store = createStore({
         allowComments: false,
         liveStatus: false,
       },
-      setups: [
-      ]
-      
+      setups: []
     }
   },
   getters: {
@@ -39,8 +37,9 @@ const store = createStore({
       console.log('save')
       console.log(state.activeEditEquipment.items)
     },
-    addItem(state, item) {
-      state.activeEditEquipment.items.push(item)
+    addItem(state, { item, setupId }) {
+      state.setups.find(s => s.id === setupId).items.push(item)
+      // state.setups.find(s => s.id === setupId).items.display = false
     },
     setLoggedInUser(state, user) {
       state.user = user;
@@ -53,16 +52,22 @@ const store = createStore({
       state.loggedIn = false;
       state.profileDetails.profPic = null
     },
-    hideItem(state, index) {
-      state.activeEditEquipment.items[index].display = false
+    // hideItem(state, setupId, index) {
+    //   state.setups.find(s => s.id === setupId).items.display = false
+    // },
+    removeItem(state, {item, setupId, index}) {
+      state.setups.find(s => s.id === setupId).items.splice(index, 1)
     },
-    removeItem(state, index) {
-      state.activeEditEquipment.items.splice(index, 1)
-    },
-    addSetup(state, item) {
-      state.setups.push(item)
+    addSetup(state, setup) {
+      state.setups.push(setup)
 
-      // router.push('edit')
+      // router.push('/edit')
+    },
+    moveItem(state, { setupId, itemIndex, point }) {
+      const setup = state.setups.find(s => s.id === setupId)
+      const item = setup.items[itemIndex]
+      item.x  = point.x
+      item.y = point.y
     }
   },
   actions: {
@@ -77,31 +82,29 @@ const store = createStore({
     },
     // LOGOUT
     logout() {
-      
       logOut()
-
       router.push('/')
-
       this.commit('setLoggedOutUser')
-
       setTimeout(() => {alert('logged Out')}, 500);
-      
     },
     // SAVE
     save(context, equipment) {
       context.commit('save', equipment)
     },
-    addItem(context, item) {
-      context.commit('addItem', item)
+    addItem(context, { item, setupId }) {
+      context.commit('addItem', { item, setupId })
     },
-    hideItem(context, index) {
-      context.commit('hideItem', index)
+    // hideItem(context, {item, setupId, index}) {
+    //   context.commit('hideItem', {item, setupId, index})
+    // },
+    removeItem(context, {item, setupId, index }) {
+      context.commit('removeItem', {item, setupId, index })
     },
-    removeItem(context, index) {
-      context.commit('removeItem', index)
+    addSetup(context, setup) {
+      context.commit('addSetup', setup)
     },
-    addSetup(context, item) {
-      context.commit('addSetup', item)
+    moveItem(context, { setupId, itemIndex, point }) {
+      context.commit('moveItem', { setupId, itemIndex, point })
     }
   }
 })

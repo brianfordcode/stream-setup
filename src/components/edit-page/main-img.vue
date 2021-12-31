@@ -11,6 +11,7 @@
       <div
         class="images-container"
         ref = "imagesContainer"
+        style = "height: 612.61px"
       >
       
           <!-- IMAGE PLACEHOLDER -->
@@ -24,7 +25,7 @@
             <div class="add-image-btn">Change Image</div>
             <img class="main-img"
                 draggable="false"
-                @click="addItems"
+                @click="addItem"
                 :src="$store.getters.setup($route.params.id).imageURL"
             />
 
@@ -33,21 +34,22 @@
       </div>
 
 <!--  TARGET  -->
-    <div v-for="(item, index) in $store.state.activeEditEquipment.items" :key="index">
+    <div v-for="(item, index) in $store.getters.setup($route.params.id).items" :key="index">
     	<img class="target"
-            @dblclick.stop="item.display = !item.display"
+            @dblclick.stop="displayedItemIndex = displayedItemIndex === index ? null : index"
             @mousedown="dragging = index"
          	src="@/assets/target-icon.png"
             alt="target"
             draggable="false"
-    	    :style="{top: (item.y - 15) + 'px',
-                     left: (item.x - 25) + 'px'
-                    }"
+    	    :style="{
+                   top: (item.y - 15) + 'px',
+                   left: (item.x - 25) + 'px'
+                  }"
          />
 
 <!-- DETAILS BOX -->
       <div class="details-box"
-           v-if="item.display"
+           v-if="displayedItemIndex === index"
            :style="{top: (item.y + 30) + 'px', left: (item.x) + 'px'}"
       >
           <div class="details-text-wrapper">
@@ -84,43 +86,49 @@
 
             <button
                 class="enter-btn btn"
-                @click.stop="$store.dispatch('hideItem', index)"
+                @click.stop="displayedItemIndex = null"
             >ENTER</button>
             <button
               class="remove-btn btn"
-              @click.stop="$store.dispatch('removeItem', index)"
+              @click.stop="$store.dispatch('removeItem', { item, setupId: this.$route.params.id, index }), displayedItemIndex = null
+"
             >REMOVE
             </button>
          </div>
     </div>
   </div>
 
+  <itemList @toggleItemDisplay="index => displayedItemIndex = index"/>
+
 </template>
 
 <script>
-
+import itemList from './items-list.vue'
   
 export default {
   data() {
     return {
       dragging: null,
+      displayedItemIndex: null,
     }
   },
-  components: {},
+  components: { itemList },
   methods: {
-    addItems(e) {
+    addItem(e) {
       const rect = e.target.getBoundingClientRect()
       const x = e.clientX - rect.left
       const y = e.clientY - rect.top
-      const point = {
+      const setupId = this.$route.params.id
+      const setup = this.$store.getters.setup(setupId)
+      this.displayedItemIndex = setup.items.length
+      const item = {
         category: '',
         name: '',
         url: '',
         x,
         y,
-        display: true,
       }
-      this.$store.dispatch('addItem', point)
+      this.$store.dispatch('addItem', { item, setupId })
     },
     onMouseMove(event) {
         event.preventDefault()
@@ -128,8 +136,15 @@ export default {
 
         const {x, y} = this.$refs.imagesContainer.getBoundingClientRect()
 
-        this.$store.state.activeEditEquipment.items[this.dragging].x = event.clientX - x
-        this.$store.state.activeEditEquipment.items[this.dragging].y = event.clientY - y
+        this.$store.dispatch({
+          type: 'moveItem',
+          setupId: this.$route.params.id,
+          itemIndex: this.dragging,
+          point: {
+            x: event.clientX - x,
+            y: event.clientY - y
+          }
+        })
     },
 
   }
@@ -161,7 +176,7 @@ export default {
   .main-img {
     width: 800px;
     height: auto;
-    padding: 10px 0;
+    /* padding: 10px 0; */
     cursor: crosshair;
     box-shadow: 0px 0px 33px -20px #000000;
   }
@@ -172,7 +187,7 @@ export default {
     color: white;
     background: green;
     padding: 7px;
-    transform: translateY(-14px);
+    /* transform: translateY(-14px); */
     cursor: pointer;
   }
   

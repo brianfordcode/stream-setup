@@ -4,23 +4,23 @@
 
       <!-- PLACEHOLDER -->
     <div class="placeholder"
-        v-if="$store.state.activeEditEquipment.items.length===0"
+        v-if="$store.getters.setup($route.params.id).items.length === 0"
     >
     Add your equipment info by clicking on your setup's image!
     </div>
 
     <!-- ITEMS LIST -->
     <draggable 
-        v-model="$store.state.activeEditEquipment.items"
+        v-model="$store.getters.setup($route.params.id).items"
         group="items"
         @start="drag=true" 
         @end="drag=false" 
         item-key="id"
         class="items-list-container"
     >
-        <template #item="{element}">
+        <template #item="{element, index}">
             <div class="item-details"
-                @click.stop="element.display = !element.display"
+                @click.stop="$emit('toggleItemDisplay', index)"
             >
             <!-- ICON -->
             <img class="icon" 
@@ -43,7 +43,7 @@
     </draggable>
 
     <p style="font-size: 14px; color: white; opacity: 0.5; margin-top: 10px"
-       v-if="$store.state.activeEditEquipment.items.length>1"
+       v-if="$store.getters.setup($route.params.id).items.length > 1"
     >
     *drag to reorder
     </p>
@@ -109,6 +109,7 @@ export default {
 <style scoped>
 
 .main-container {
+    margin-top: 10px;
     margin-bottom: 50px;
 }
 
