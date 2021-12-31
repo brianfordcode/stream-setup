@@ -33,10 +33,6 @@ const store = createStore({
     }
   },
   mutations: {
-    save(state, setup) {
-      console.log('save')
-      console.log(state.activeEditEquipment.items)
-    },
     addItem(state, { item, setupId }) {
       state.setups.find(s => s.id === setupId).items.push(item)
       // state.setups.find(s => s.id === setupId).items.display = false
@@ -52,22 +48,21 @@ const store = createStore({
       state.loggedIn = false;
       state.profileDetails.profPic = null
     },
-    // hideItem(state, setupId, index) {
-    //   state.setups.find(s => s.id === setupId).items.display = false
-    // },
     removeItem(state, {item, setupId, index}) {
       state.setups.find(s => s.id === setupId).items.splice(index, 1)
     },
     addSetup(state, setup) {
       state.setups.push(setup)
-
-      // router.push('/edit')
     },
     moveItem(state, { setupId, itemIndex, point }) {
       const setup = state.setups.find(s => s.id === setupId)
       const item = setup.items[itemIndex]
       item.x  = point.x
       item.y = point.y
+    },
+    deleteSetup(state, setupId) {
+      state.setups = state.setups.filter(setup => setup.id !== setupId)
+      
     }
   },
   actions: {
@@ -87,16 +82,9 @@ const store = createStore({
       this.commit('setLoggedOutUser')
       setTimeout(() => {alert('logged Out')}, 500);
     },
-    // SAVE
-    save(context, equipment) {
-      context.commit('save', equipment)
-    },
     addItem(context, { item, setupId }) {
       context.commit('addItem', { item, setupId })
     },
-    // hideItem(context, {item, setupId, index}) {
-    //   context.commit('hideItem', {item, setupId, index})
-    // },
     removeItem(context, {item, setupId, index }) {
       context.commit('removeItem', {item, setupId, index })
     },
@@ -105,7 +93,11 @@ const store = createStore({
     },
     moveItem(context, { setupId, itemIndex, point }) {
       context.commit('moveItem', { setupId, itemIndex, point })
+    },
+    deleteSetup(context, setupId ) {
+      context.commit('deleteSetup', setupId)
     }
+    
   }
 })
 

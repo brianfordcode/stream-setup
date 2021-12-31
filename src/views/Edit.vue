@@ -7,7 +7,7 @@
 
   <mainImg/>
 
-  <!-- <itemsList/> -->
+  <div style="padding-bottom: 50px;">{{ $store.state.setups }}</div>
 
 </div>
 
@@ -16,11 +16,10 @@
 <script>
 import profileHeader from '../components/edit-page/profile-header.vue'
 import mainImg from '../components/edit-page/main-img.vue'
-import itemsList from '../components/edit-page/items-list.vue'
 
 export default {
   components: {
-    mainImg, profileHeader, itemsList,
+    mainImg, profileHeader
   }
 
 }

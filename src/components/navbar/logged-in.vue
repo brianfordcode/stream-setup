@@ -2,16 +2,6 @@
 
     <div class="logged-in-wrapper">
 
-        <!-- SAVE -->
-        <div 
-            class="btn" 
-            v-if="$route.name === 'Edit'"
-            @click="$store.dispatch('save')"
-            style="background-color: green;"
-        >
-        Save
-        </div>
-
         <!-- EDIT -->
         <router-link
             v-if="$route.name === 'View'"

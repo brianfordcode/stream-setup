@@ -98,6 +98,7 @@
     </div>
   </div>
 
+  <!-- ITEM LIST -->
   <itemList @toggleItemDisplay="index => displayedItemIndex = index"/>
 
 </template>
@@ -187,7 +188,6 @@ export default {
     color: white;
     background: green;
     padding: 7px;
-    /* transform: translateY(-14px); */
     cursor: pointer;
   }
   
