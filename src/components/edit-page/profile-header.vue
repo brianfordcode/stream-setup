@@ -117,7 +117,7 @@
         @click="editOpen = !editOpen, enterBtn()"
         ref="textToggle"
     >
-    Edit Details
+    Enter Details
     </button>
 
     <!-- details box -->

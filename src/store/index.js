@@ -59,6 +59,7 @@ const store = createStore({
       const item = setup.items[itemIndex]
       item.x  = point.x
       item.y = point.y
+      console.log(item.x, item.y)
     },
     deleteSetup(state, setupId) {
       state.setups = state.setups.filter(setup => setup.id !== setupId)

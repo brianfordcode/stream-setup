@@ -6,12 +6,11 @@
     @mousemove = "onMouseMove"
     @mouseup = "dragging = null"
   >
-      
-
+  
       <div
         class="images-container"
         ref = "imagesContainer"
-        style = "height: 612.61px"
+        style = "height: 612.61px; width: 800px;"
       >
       
           <!-- IMAGE PLACEHOLDER -->
@@ -29,73 +28,88 @@
                 :src="$store.getters.setup($route.params.id).imageURL"
             />
 
-
-
       </div>
 
 <!--  TARGET  -->
     <div v-for="(item, index) in $store.getters.setup($route.params.id).items" :key="index">
-    	<img class="target"
-            @dblclick.stop="displayedItemIndex = displayedItemIndex === index ? null : index"
-            @mousedown="dragging = index"
-         	src="@/assets/target-icon.png"
-            alt="target"
-            draggable="false"
-    	    :style="{
-                   top: (item.y - 15) + 'px',
-                   left: (item.x - 25) + 'px'
+    	<img
+        src="@/assets/target-icon.png"
+        class="target"
+        @dblclick.stop="displayedItemIndex = displayedItemIndex === index ? null : index, hoveredItem = null"
+        @mousedown="dragging = index"
+        @mouseenter="hoveredItem = hoveredItem === index ? null : index;"
+        @mouseleave="hoveredItem = null"
+        alt="target"
+        draggable="false"
+        :style="{
+                  top: (item.y - 25) + 'px',
+                  left: (item.x - 25) + 'px'
+                }"
+      />
+
+         <!-- TOOLTIP ON HOVER -->
+        <p
+          class="tooltip"
+          v-if="hoveredItem === index"
+          :style="{
+                    top: (item.y + 30) + 'px',
+                    left: (item.x - 55) + 'px'
                   }"
-         />
+        >
+        Double click to edit
+        </p>
 
 <!-- DETAILS BOX -->
       <div class="details-box"
            v-if="displayedItemIndex === index"
-           :style="{top: (item.y + 30) + 'px', left: (item.x) + 'px'}"
+           :style="{top: (item.y + 5) + 'px', left: (item.x + 5) + 'px'}"
       >
-          <div class="details-text-wrapper">
-              <p style="color:white">Category:</p>
-              <select
-                  name="category"
-                  id="category" 
-                  v-model="item.category"
-                  style="width:200px; height: 30px;"
-              >
-                  <option value="none" disabled>Select Category</option>
-                  <option value="keyboard">Keyboard</option>
-                  <option value="monitor">Monitor</option>
-                  <option value="speaker">Speaker</option>
-                  <option value="chair">Chair</option>
-                  <option value="desk">Desk</option>
-                  <option value="mouse">Mouse</option>
-                  <option value="computer">Computer</option>
-                  <option value="microphone">Microphone</option>
-                  <option value="accessory">Accessory</option>
-                  <option value="webcam">Webcam</option>
-              </select>
-          </div>
+        <div class="details-text-wrapper">
+            <p style="color:white">Category:</p>
+            <select
+                name="category"
+                id="category" 
+                v-model="item.category"
+                style="width:200px; height: 30px;"
+            >
+                <option value="none" disabled>Select Category</option>
+                <option value="keyboard">Keyboard</option>
+                <option value="monitor">Monitor</option>
+                <option value="speaker">Speaker</option>
+                <option value="chair">Chair</option>
+                <option value="desk">Desk</option>
+                <option value="mouse">Mouse</option>
+                <option value="computer">Computer</option>
+                <option value="microphone">Microphone</option>
+                <option value="accessory">Accessory</option>
+                <option value="webcam">Webcam</option>
+            </select>
+        </div>
 
-          <div class="details-text-wrapper">
-              <p style="color:white">Model:</p>
-              <input v-model="item.name"/>
-          </div>
+        <div class="details-text-wrapper">
+            <p style="color:white">Model:</p>
+            <input v-model="item.name"/>
+        </div>
 
-          <div class="details-text-wrapper">
-              <p style="color:white">URL:</p>
-              <input v-model="item.url"/>
-          </div>
+        <div class="details-text-wrapper">
+            <p style="color:white">URL:</p>
+            <input v-model="item.url"/>
+        </div>
 
-            <button
-                class="enter-btn btn"
-                @click.stop="displayedItemIndex = null"
-            >ENTER</button>
-            <button
-              class="remove-btn btn"
-              @click.stop="$store.dispatch('removeItem', { item, setupId: this.$route.params.id, index }), displayedItemIndex = null
-"
-            >REMOVE
-            </button>
-         </div>
+          <button
+              class="enter-btn btn"
+              @click.stop="displayedItemIndex = null"
+          >ENTER
+          </button>
+          <button
+            class="remove-btn btn"
+            @click.stop="$store.dispatch('removeItem', { item, setupId: this.$route.params.id, index }), displayedItemIndex = null"
+          >REMOVE
+          </button>
+      </div>
+
     </div>
+
   </div>
 
   <!-- ITEM LIST -->
@@ -111,6 +125,7 @@ export default {
     return {
       dragging: null,
       displayedItemIndex: null,
+      hoveredItem: null,
     }
   },
   components: { itemList },
@@ -133,8 +148,11 @@ export default {
     },
     onMouseMove(event) {
         event.preventDefault()
+
         if (this.dragging === null) { return }
 
+        this.hoveredItem = null;
+        
         const {x, y} = this.$refs.imagesContainer.getBoundingClientRect()
 
         this.$store.dispatch({
@@ -149,6 +167,7 @@ export default {
     },
 
   }
+
 }
   
 </script>
@@ -202,6 +221,16 @@ export default {
 
   .target:hover {
       opacity: 0.75;
+  }
+
+  .tooltip {
+    position: absolute;
+    background: rgba(0,0,0,0.5);
+    padding: 5px;
+    color: white;
+    opacity: 0.5;
+    border-radius: 5px;
+    font-size: 12px;
   }
   
   .details-box {

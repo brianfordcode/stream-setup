@@ -15,7 +15,7 @@ export default {
 div {
     color: white;
     height: 900px;
-    background-color: black;
+    background-color: rgba(0,0,0,0.5);
     width: 300px;
     flex-grow: 0;
     flex-shrink: 0;

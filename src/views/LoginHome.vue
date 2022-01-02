@@ -1,128 +1,124 @@
 <template>
 
-    <div class="loginhome-container">
+<div class="loginhome-container">
 
-        <!-- WELCOME USER -->
-        <h1
-            style="color: white; padding: 30px 0;"
-            v-if="$store.state.user"
+    <!-- WELCOME USER -->
+    <h1
+        style="color: white; padding: 30px 0;"
+        v-if="$store.state.user"
+    >
+    Welcome {{ $store.state.user.displayName }}
+    </h1>
+
+    <!-- PROFILE HEADER -->
+    <profileHeader style="width: 800px;"/>
+
+    <h2 style="color: white; padding: 30px 0">My Setups:</h2>
+
+    <div class="setup-links-container">
+        <!-- LIST CONTAINER -->
+        <div 
+            class="setup-links"
+            v-for="(setup, index) in $store.state.setups" 
+            :key="setup.id"
         >
-        Welcome {{ $store.state.user.displayName }}
-        </h1>
-
-        <!-- PROFILE HEADER -->
-        <profileHeader style="width: 800px;"/>
-
-        <h2
-            style="color: white; padding: 30px 0"
-        >
-        My Setups:
-        </h2>
-
-        <div class="setup-links-container">
-            <!-- LIST CONTAINER -->
-            <div 
-                class="setup-links"
-                v-for="(setup, index) in $store.state.setups" 
-                :key="setup.id"
+            <!-- SETUP CONTAINER -->
+            <div
+                class="setup-image-container"
+                @mouseover="showButtons(index)"
+                @mouseleave="resetButtons()"
             >
-                <!-- SETUP CONTAINER -->
+                <!-- IMAGE -->
+                <img
+                    draggable="false"
+                    class="setup-image"
+                    :src="setup.imageURL" 
+                    alt="main-img"
+                />
+                <!-- BUTTONS -->
                 <div
-                    class="setup-image-container"
-                    @mouseover="showButtons(index)"
-                    @mouseleave="resetButtons()"
+                    class="buttons-container"
+                    v-if="selectedSetup == index"
                 >
-                    <!-- IMAGE -->
-                    <img
-                        draggable="false"
-                        class="setup-image"
-                        :src="setup.imageURL" 
-                        alt="main-img"
-                    />
-                    <!-- BUTTONS -->
+                    <!-- DELETE -->
                     <div
-                        class="buttons-container"
-                        v-if="selectedSetup == index"
+                        class="delete-modal"
+                        v-if="modalOpen"
                     >
-                        <!-- DELETE BTN -->
-                        <div
-                            class="delete-modal"
-                            v-if="modalOpen"
-                        >
-
-                            <div class="modal-content">
-                                 Are you sure you want<br>to delete this setup?
-                                <div class="options">
-                                    <p
-                                        class="yes-btn"
-                                        @click="$store.dispatch('deleteSetup', setup.id), resetButtons()"
-                                    >
-                                    Yes
-                                    </p>
-                                    <p
-                                        class="no-btn"
-                                        @click="resetButtons()"
-                                    >
-                                    No
-                                    </p>
-                                </div>
+                        <!-- MODAL -->
+                        <div class="modal-content">
+                                Are you sure you want<br>to delete this setup?
+                            <div class="options">
+                                <p
+                                    class="yes-btn"
+                                    @click="$store.dispatch('deleteSetup', setup.id), resetButtons()"
+                                >
+                                Yes
+                                </p>
+                                <p
+                                    class="no-btn"
+                                    @click="resetButtons()"
+                                >
+                                No
+                                </p>
                             </div>
-
-                        </div>
-                        
-                        <div
-                            class="btn delete-btn"
-                            @click="modalOpen = true"
-                            v-if="!modalOpen"
-                        >
-                        Delete
                         </div>
 
-                        
-                        <!-- EDIT BTN -->
-                        <router-link :to="`/edit/${setup.id}`">
-                            <div
-                                class="btn edit-btn"
-                                v-if="!modalOpen"
-                            >
-                            Edit
-                            </div>
-                        </router-link>
-                        <!-- PREVIEW -->
-                        <router-link to="/view">
-                            <div
-                                class="btn preview-btn"
-                                v-if="!modalOpen"
-                            >
-                            Preview
-                            </div>
-                        </router-link>
-                        <!-- SHARE BTN -->
-                        <div
-                            class="btn share-btn"
-                            v-if="!modalOpen"
-                        >
-                        Share
-                        </div>
                     </div>
-                        
+                    <!-- DELETE BTN -->
+                    <div
+                        class="btn delete-btn"
+                        @click="modalOpen = true"
+                        v-if="!modalOpen"
+                    >
+                    Delete
+                    </div>
+
                     
+                    <!-- EDIT BTN -->
+                    <router-link :to="`/edit/${setup.id}`">
+                        <div
+                            class="btn edit-btn"
+                            v-if="!modalOpen"
+                        >
+                        Edit
+                        </div>
+                    </router-link>
+                    <!-- PREVIEW -->
+                    <router-link to="/view">
+                        <div
+                            class="btn preview-btn"
+                            v-if="!modalOpen"
+                        >
+                        Preview
+                        </div>
+                    </router-link>
+                    <!-- SHARE BTN -->
+                    <div
+                        class="btn share-btn"
+                        v-if="!modalOpen"
+                    >
+                    Share
+                    </div>
                 </div>
+                    
                 
             </div>
+            
+        </div>
 
-            <!-- PLACEHOLDER -->
-            <div
-                @click="makeNewSetup"
-                class="placeholder"
-                ref="placeholder"
-            >
-            Add a Setup!
-            </div>
-
+        <!-- PLACEHOLDER -->
+        <div
+            @click="makeNewSetup"
+            class="placeholder"
+            ref="placeholder"
+        >
+        Add a Setup!
         </div>
 
     </div>
+
+</div>
 
     <!-- <div>{{ $store.state.setups }}</div> -->
 
