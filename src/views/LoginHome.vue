@@ -85,7 +85,7 @@
                         </div>
                     </router-link>
                     <!-- PREVIEW -->
-                    <router-link to="/view">
+                    <router-link :to="`/view/${setup.id}`">
                         <div
                             class="btn preview-btn"
                             v-if="!modalOpen"

@@ -35,7 +35,6 @@ const store = createStore({
   mutations: {
     addItem(state, { item, setupId }) {
       state.setups.find(s => s.id === setupId).items.push(item)
-      // state.setups.find(s => s.id === setupId).items.display = false
     },
     setLoggedInUser(state, user) {
       state.user = user;

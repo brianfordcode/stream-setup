@@ -5,7 +5,7 @@
         <!-- EDIT -->
         <router-link
             v-if="$route.name === 'View'"
-            to="/edit"
+            :to="`/edit/${this.$route.params.id}`"
             style="background-color: rgb(245, 101, 35);"
         >
         Edit
@@ -14,7 +14,7 @@
         <!-- PREVIEW -->
         <router-link
             v-if="$route.name === 'Edit'"
-            to="/view"
+            :to="`/view/${this.$route.params.id}`"
             style="background-color: purple;"
         >
         Preview
@@ -31,7 +31,7 @@
         <!-- MY SETUPS -->
         <router-link
             to="/LoginHome" 
-            v-if="$route.name === 'Edit' || $route.name === 'Home'"
+            v-if="$route.name === 'Edit' || $route.name === 'Home' || $route.name === 'View'"
             style="background-color: rgb(42, 43, 117);"
         >
         My Setups

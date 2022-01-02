@@ -148,6 +148,9 @@ export default {
         y,
       }
       this.$store.dispatch('addItem', { item, setupId })
+
+      console.log(this.$route.params.id)
+
     },
     onMouseMove(event) {
         event.preventDefault()
