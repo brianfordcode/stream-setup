@@ -5,8 +5,8 @@
     class="main-container"
     @mousemove = "onMouseMove"
     @mouseup = "dragging = null"
+    @mouseleave="dragging = null"
   >
-  
       <div
         class="images-container"
         ref = "imagesContainer"
@@ -56,7 +56,7 @@
                     left: (item.x - 55) + 'px'
                   }"
         >
-        Double click to edit
+        Click to move<br>Double click to edit
         </p>
 
 <!-- DETAILS BOX -->
@@ -119,6 +119,9 @@
 
 <script>
 import itemList from './items-list.vue'
+
+// make sure target doesn't go off image-container when moving
+const clamp = (value, min, max) => Math.max(min, Math.min(max, value))
   
 export default {
   data() {
@@ -152,16 +155,17 @@ export default {
         if (this.dragging === null) { return }
 
         this.hoveredItem = null;
+        this.displayedItemIndex = null;
         
-        const {x, y} = this.$refs.imagesContainer.getBoundingClientRect()
+        const {x, y, width, height} = this.$refs.imagesContainer.getBoundingClientRect()
 
         this.$store.dispatch({
           type: 'moveItem',
           setupId: this.$route.params.id,
           itemIndex: this.dragging,
           point: {
-            x: event.clientX - x,
-            y: event.clientY - y
+            x: clamp(event.clientX - x, 0, width),
+            y: clamp(event.clientY - y, 0, height)
           }
         })
     },
