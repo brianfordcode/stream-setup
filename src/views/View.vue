@@ -20,14 +20,15 @@
       />
       <!-- ITEM -->
         <div
-          class="item-icon"
           v-for="(item, index) in $store.getters.setup($route.params.id).items"
+          :class="{'item-icon': true, 'hovered-list-item': hoveredListItem === index}"
           :key="index"
           :style="{
                   top: (item.y - 50) + 'px',
                   left: (item.x - 50) + 'px'
                 }"
           @mouseover="mouseOver(index)"
+          
         >
         </div>
 
@@ -76,8 +77,9 @@
         class="item-details"
         v-for="(item, index) in $store.getters.setup($route.params.id).items"
         :key="index"
-        @mouseover="hoveredItem = index"
         @click = "hoveredItem = null"
+        @mouseenter = "hoveredListItem = index"
+        @mouseleave = "hoveredListItem = null"
       >
         <!-- ICON -->
             <img
@@ -120,6 +122,7 @@ export default {
   data() {
     return {
       hoveredItem: null,
+      hoveredListItem: null
     }
   },
   components: {
@@ -191,7 +194,8 @@ export default {
   opacity: 0;
 }
 
-.item-icon:hover {
+.item-icon:hover,
+.hovered-list-item {
   transform: scale(1.2);
   opacity: .25;
 }
