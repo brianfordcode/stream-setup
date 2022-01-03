@@ -61,8 +61,10 @@
 
 <!-- DETAILS BOX -->
       <div class="details-box"
+      ref="detailsBox"
+      @click="getDimensions"
            v-if="displayedItemIndex === index"
-           :style="{top: (item.y + 5) + 'px', left: (item.x + 5) + 'px'}"
+           :style="{top: (item.y - this.detailBoxPlacement.y) + 'px', left: (item.x - this.detailBoxPlacement.x ) + 'px'}"
       >
         <div class="details-text-wrapper">
             <p style="color:white">Category:</p>
@@ -129,6 +131,7 @@ export default {
       dragging: null,
       displayedItemIndex: null,
       hoveredItem: null,
+      detailBoxPlacement: {x: null, y: null}
     }
   },
   components: { itemList },
@@ -148,6 +151,13 @@ export default {
         y,
       }
       this.$store.dispatch('addItem', { item, setupId })
+
+      console.log(x, y)
+      console.log(this.detailBoxPlacement.x, this.detailBoxPlacement.y)
+
+      x >= 400 ? this.detailBoxPlacement.x = 333 : this.detailBoxPlacement.x = -5
+      y >= 300 ? this.detailBoxPlacement.y = 160 : this.detailBoxPlacement.y = -5
+
     },
     onMouseMove(event) {
         event.preventDefault()
@@ -169,6 +179,9 @@ export default {
           }
         })
     },
+    getDimensions() {
+      console.log(this.$refs.detailsBox.clientWidth)
+    }
 
   }
 

@@ -68,40 +68,40 @@ export default {
 
     methods: {
         getIconPic(e) {
-        if (e.category === 'accessory') {
-            return require('@/assets/icons/accessory.png')
-        }
-        if (e.category === 'chair') {
-            return require('@/assets/icons/chair.png')
-        }
-        if (e.category === 'computer') {
-            return require('@/assets/icons/computer.png')
-        }
-        if (e.category === 'desk') {
-            return require('@/assets/icons/desk.png')
-        }
-        if (e.category === 'headset') {
-            return require('@/assets/icons/headset.png')
-        }
-        if (e.category === 'keyboard') {
-            return require('@/assets/icons/keyboard.png')
-        }
-        if (e.category === 'microphone') {
-            return require('@/assets/icons/microphone.png')
-        }
-        if (e.category === 'monitor') {
-            return require('@/assets/icons/monitor.png')
-        }
-        if (e.category === 'mouse') {
-            return require('@/assets/icons/mouse.png')
-        }
-        if (e.category === 'speaker') {
-            return require('@/assets/icons/speaker.png')
-        }
-        if (e.category === 'webcam') {
-            return require('@/assets/icons/webcam.png')
-        }
-    },
+            if (e.category === 'accessory') {
+                return require('@/assets/icons/accessory.png')
+            }
+            if (e.category === 'chair') {
+                return require('@/assets/icons/chair.png')
+            }
+            if (e.category === 'computer') {
+                return require('@/assets/icons/computer.png')
+            }
+            if (e.category === 'desk') {
+                return require('@/assets/icons/desk.png')
+            }
+            if (e.category === 'headset') {
+                return require('@/assets/icons/headset.png')
+            }
+            if (e.category === 'keyboard') {
+                return require('@/assets/icons/keyboard.png')
+            }
+            if (e.category === 'microphone') {
+                return require('@/assets/icons/microphone.png')
+            }
+            if (e.category === 'monitor') {
+                return require('@/assets/icons/monitor.png')
+            }
+            if (e.category === 'mouse') {
+                return require('@/assets/icons/mouse.png')
+            }
+            if (e.category === 'speaker') {
+                return require('@/assets/icons/speaker.png')
+            }
+            if (e.category === 'webcam') {
+                return require('@/assets/icons/webcam.png')
+            }
+        },
     }
 }
 </script>
@@ -138,7 +138,7 @@ export default {
     border: 1px solid white;
     border-radius: 7px;
     width: 227px;
-    min-height: 90px;
+    min-height: 60px;
     padding: 15px;
     position: relative;
     transition: .1s ease-in-out;

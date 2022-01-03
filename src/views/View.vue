@@ -1,95 +1,62 @@
 <template>
 
-<div class="view-container">
+  <div class="view-container">
 
-  <div class="profile">
-    <profileHeader style="z-index: 10000"/>
+    <div class="profile">
+      <profileHeader style="z-index: 10000"/>
 
-    <!-- image and item icons CONTAINER -->
-    <div
-      class="image-container"
-      style="height: 600px; width: 800px; position: relative;"
-    >
-      <!-- MAIN IMAGE -->
-      <img
-        :src="$store.getters.setup($route.params.id).imageURL"
-        :alt="$store.getters.setup($route.params.id).imageURL"
-        style="height: 100%; width: 100%;"
-        draggable = "false"
-        @click="hoveredItem = null"
-      />
-      <!-- ITEM -->
-        <div
-          v-for="(item, index) in $store.getters.setup($route.params.id).items"
-          :class="{'item-icon': true, 'hovered-list-item': hoveredListItem === index}"
-          :key="index"
-          :style="{
-                  top: (item.y - 50) + 'px',
-                  left: (item.x - 50) + 'px'
-                }"
-          @mouseover="mouseOver(index)"
-          
-        >
-        </div>
-
-      <!-- ITEM MODAL -->
+      <!-- image and item icons CONTAINER -->
       <div
-        class="modal-container"
-        v-for="(item, index) in $store.getters.setup($route.params.id).items"
-        :key="index"
+        class="image-container"
+        style="height: 600px; width: 800px; position: relative; overflow: hidden"
       >
-        <div
-          class="item-modal"
-          :style="{
-                  top: (item.y) + 'px',
-                  left: (item.x) + 'px'
-                }"
-          v-if="hoveredItem == index"
-        >
-          <!-- ICON -->
-          <img
-            class="icon" 
-            draggable="false"
-            :src="getIconPic(item)"
-            :alt="item.category"
-            style="height: 50px;"
+        <!-- MAIN IMAGE -->
+        <img
+          :src="$store.getters.setup($route.params.id).imageURL"
+          :alt="$store.getters.setup($route.params.id).imageURL"
+          style="height: 100%; width: 100%;"
+          draggable = "false"
+          @click="hoveredItem = null"
+          @mouseleave="hoveredItem = null"
+        />
+        <!-- ITEM -->
+          <div
+            v-for="(item, index) in $store.getters.setup($route.params.id).items"
+            :class="{'item-icon': true, 'hovered-list-item': hoveredListItem === index}"
+            :key="index"
+            :style="{
+                    top: (item.y - 50) + 'px',
+                    left: (item.x - 50) + 'px'
+                  }"
+            @mouseover="mouseOver(index)"
             
-          />
-          <!-- NAME -->
-          <p style="color: white; padding-left: 10px">{{item.name}}</p>
-          <!-- STORE LINK -->
-          <a :href="item.url"
-              class="store-link"
-              target="_blank"
-              v-if="item.url"
-              >Visit Store
-          </a>
-        
-        </div>
-      </div>
+          >
+          </div>
 
-    </div>
-
-    <!-- item-list -->
-    <div class="item-list-container">
-
-      <div
-        class="item-details"
-        v-for="(item, index) in $store.getters.setup($route.params.id).items"
-        :key="index"
-        @click = "hoveredItem = null"
-        @mouseenter = "hoveredListItem = index"
-        @mouseleave = "hoveredListItem = null"
-      >
-        <!-- ICON -->
+        <!-- ITEM MODAL -->
+        <div
+          class="modal-container"
+          v-for="(item, index) in $store.getters.setup($route.params.id).items"
+          :key="index"
+        >
+          <div
+            class="item-modal"
+            :style="{
+                    top: (item.y) + 'px',
+                    left: (item.x) + 'px'
+                  }"
+            v-if="hoveredItem == index"
+          >
+            <!-- ICON -->
             <img
               class="icon" 
               draggable="false"
               :src="getIconPic(item)"
               :alt="item.category"
               style="height: 50px;"
+              
             />
-        <!-- NAME -->
+            <!-- NAME -->
             <p style="color: white; padding-left: 10px">{{item.name}}</p>
             <!-- STORE LINK -->
             <a :href="item.url"
@@ -98,19 +65,50 @@
                 v-if="item.url"
                 >Visit Store
             </a>
+          
+          </div>
+        </div>
+
+      </div>
+
+      <!-- item-list -->
+      <div class="item-list-container">
+
+        <div
+          class="item-details"
+          v-for="(item, index) in $store.getters.setup($route.params.id).items"
+          :key="index"
+          @click = "hoveredItem = null"
+          @mouseenter = "hoveredListItem = index"
+          @mouseleave = "hoveredListItem = null"
+        >
+          <!-- ICON -->
+              <img
+                class="icon" 
+                draggable="false"
+                :src="getIconPic(item)"
+                :alt="item.category"
+                style="height: 50px;"
+              />
+          <!-- NAME -->
+              <p style="color: white; padding-left: 10px">{{item.name}}</p>
+              <!-- STORE LINK -->
+              <a :href="item.url"
+                  class="store-link"
+                  target="_blank"
+                  v-if="item.url"
+                  >Visit Store
+              </a>
+
+        </div>
 
       </div>
 
     </div>
-    
-  
+
+    <sideBar/>
+
   </div>
-
-  <sideBar/>
-
-</div>
-
-
 
 </template>
 
@@ -214,7 +212,7 @@ export default {
   border: 1px solid white;
   border-radius: 7px;
   width: 227px;
-  min-height: 90px;
+  min-height: 60px;
   padding: 15px;
   position: relative;
 }
