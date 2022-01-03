@@ -10,7 +10,7 @@
       <div
         class="images-container"
         ref = "imagesContainer"
-        style = "height: 612.61px; width: 800px;"
+        style = "height: 600px; width: 800px;"
       >
       
           <!-- IMAGE PLACEHOLDER -->
@@ -148,9 +148,6 @@ export default {
         y,
       }
       this.$store.dispatch('addItem', { item, setupId })
-
-      console.log(this.$route.params.id)
-
     },
     onMouseMove(event) {
         event.preventDefault()
@@ -202,7 +199,7 @@ export default {
   
   .main-img {
     width: 800px;
-    height: auto;
+    height: 600px;
     /* padding: 10px 0; */
     cursor: crosshair;
     box-shadow: 0px 0px 33px -20px #000000;

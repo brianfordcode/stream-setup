@@ -116,6 +116,7 @@
         class="edit-btn btn"
         @click="editOpen = !editOpen, enterBtn()"
         ref="textToggle"
+        v-if="$route.name != 'View'"
     >
     Enter Details
     </button>
