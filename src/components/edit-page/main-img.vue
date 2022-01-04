@@ -61,10 +61,11 @@
 
 <!-- DETAILS BOX -->
       <div class="details-box"
-      ref="detailsBox"
-      @click="getDimensions"
            v-if="displayedItemIndex === index"
-           :style="{top: (item.y - this.detailBoxPlacement.y) + 'px', left: (item.x - this.detailBoxPlacement.x ) + 'px'}"
+           :style="{
+             top: (this.detailBlockPlacement.y) + 'px',
+             left: (this.detailBlockPlacement.x ) + 'px'
+           }"
       >
         <div class="details-text-wrapper">
             <p style="color:white">Category:</p>
@@ -131,18 +132,17 @@ export default {
       dragging: null,
       displayedItemIndex: null,
       hoveredItem: null,
-      detailBoxPlacement: {x: null, y: null}
     }
   },
   components: { itemList },
+
   methods: {
     addItem(e) {
       const rect = e.target.getBoundingClientRect()
       const x = e.clientX - rect.left
       const y = e.clientY - rect.top
       const setupId = this.$route.params.id
-      const setup = this.$store.getters.setup(setupId)
-      this.displayedItemIndex = setup.items.length
+      this.displayedItemIndex = this.currentSetup.items.length
       const item = {
         category: '',
         name: '',
@@ -151,13 +151,6 @@ export default {
         y,
       }
       this.$store.dispatch('addItem', { item, setupId })
-
-      console.log(x, y)
-      console.log(this.detailBoxPlacement.x, this.detailBoxPlacement.y)
-
-      x >= 400 ? this.detailBoxPlacement.x = 333 : this.detailBoxPlacement.x = -5
-      y >= 300 ? this.detailBoxPlacement.y = 160 : this.detailBoxPlacement.y = -5
-
     },
     onMouseMove(event) {
         event.preventDefault()
@@ -179,10 +172,21 @@ export default {
           }
         })
     },
-    getDimensions() {
-      console.log(this.$refs.detailsBox.clientWidth)
-    }
 
+  },
+  computed: {
+    currentSetup() {
+      return this.$store.getters.setup(this.$route.params.id)
+    },
+    currentlySelectedItem() {
+      return this.currentSetup.items[this.displayedItemIndex]
+    },
+    detailBlockPlacement() {
+      if (!this.currentlySelectedItem) return null
+      const x = this.currentlySelectedItem.x >= 400 ? this.currentlySelectedItem.x - 327.5 : this.currentlySelectedItem.x
+      const y = this.currentlySelectedItem.y >= 300 ? this.currentlySelectedItem.y - 156 : this.currentlySelectedItem.y
+      return { x, y }
+    }
   }
 
 }

@@ -42,10 +42,10 @@
           <div
             class="item-modal"
             :style="{
-                    top: (item.y) + 'px',
-                    left: (item.x) + 'px'
+                    top: detailBlockPlacement.y + 'px',
+                    left: detailBlockPlacement.x + 'px'
                   }"
-            v-if="hoveredItem == index"
+            v-if="hoveredItem == index && detailBlockPlacement"
           >
             <!-- ICON -->
             <img
@@ -120,7 +120,7 @@ export default {
   data() {
     return {
       hoveredItem: null,
-      hoveredListItem: null
+      hoveredListItem: null,
     }
   },
   components: {
@@ -166,7 +166,21 @@ export default {
       if (this.hoveredItem === index) {return}
       this.hoveredItem = this.hoveredItem === index ? null : index;
     },
-     
+  },
+  computed: {
+    currentSetup() {
+      return this.$store.getters.setup(this.$route.params.id)
+    },
+    currentlySelectedItem() {
+      return this.currentSetup.items[this.hoveredItem]
+    },
+    detailBlockPlacement() {
+      if (!this.currentlySelectedItem) return null
+      const x = this.currentlySelectedItem.x >= 400 ? this.currentlySelectedItem.x - 250 : this.currentlySelectedItem.x - 5
+      const y = this.currentlySelectedItem.y >= 300 ? this.currentlySelectedItem.y - 120 : this.currentlySelectedItem.y - 5
+      console.log(x, y)
+      return { x, y } 
+    }
   }
 }
 
